@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "BUSCAR - BuscouAchouReceitas";
+}
+<style>
+    .logoImg {
+        width: 346px;
+        height: 200px;
+    }
+
+    .cont-logo {
+        margin-top: 150px;
+        margin-bottom: 10px;
+        padding: 0;
+    }
+
+    #Busca {
+        width: 500px;
+        height: 30px;
+        margin: 0;
+        margin-left: 40px;
+    }
+    #Busca:focus {
+        border-color:#F58634;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px #F58634;
+    }
+
+    .btn {
+        height: 40px;
+    }
+
+
+</style>
+
+<div class="container-fluid cont-logo">
+    <div class="row-fluid">
+        <div class="span4 offset4" style="padding-left:30px;">
+            <img class="logoImg" src="~/Content/img/BAReceitas.jpg">
+        </div>
+    </div>
+</div>
+<div class="container-fluid cont-busca">
+    <div class="row-fluid">
+        <div class="span6 offset3" >
+            <form class="form-search">
+                <div class="input-append" >                
+                    <input autofocus type="text" id="Busca" placeholder="Encontre sua receita...">
+                    <button type="submit" class="btn btn-warning btn" style="border-radius:0 4px 4px 0;">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal hide fade"  id="modalcad" style="display:none">
+</div>
+<script type="text/javascript">
+   
+    $('#btncad').click(function () {
+        $.get("@Url.Action("Entrar", "Home")").success(function (data) {
+            $('#modalcad').html(data);
+            $('#modalcad').modal('show');
+        }).error(function () {
+            console.log("ERRO");
+        });
+    });
+
+</script>
+
+
+
