@@ -11,6 +11,7 @@
         margin-top: 150px;
         margin-bottom: 10px;
         padding: 0;
+        
     }
 
     #Busca {
@@ -28,9 +29,44 @@
         height: 40px;
     }
 
+    #contlogin {
+         width:200px;
+         height:200px;
+         box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px #F58634;
+    }
+
+    .dadosLogin {
+        margin-left:10px;
+    }
+
+    .inpdados {
+        width: 150px;
+    }
 
 </style>
 
+<div class="forlogin" style="display:none; position:absolute;width:100%;">
+        <div class="row-fluid" style="margin-top:5px;" >
+            <div class=" offset9 span2" style=" padding-left:100px;">
+                <div id="contlogin">
+                    <form action="/" method="post">
+                        <fieldset>
+                            <legend style="text-align:center">Login <i style="margin-left:90px; cursor:pointer;" class="icon-remove remove"></i></legend>
+                            <div class="dadosLogin">
+                                <input autofocus type="text" placeholder="NomeID" class="inpdados" />
+                            </div>
+                            <div class ="dadosLogin">
+                                <input type="text" placeholder="Senha" class="inpdados"  />
+                            </div>
+                            <div class ="dadosLogin">
+                                <button type="submit" class="btn btn-warning" style="height:30px">Logar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
 <div class="container-fluid cont-logo">
     <div class="row-fluid">
         <div class="span4 offset4" style="padding-left:30px;">
@@ -62,6 +98,15 @@
             console.log("ERRO");
         });
     });
+    $('#btnent').click(function () {
+        $('.forlogin').slideDown();
+    });
+
+    $('.remove').click(function () {
+        $(this).closest("div.forlogin").slideUp();
+    });
+
+
 
 </script>
 
