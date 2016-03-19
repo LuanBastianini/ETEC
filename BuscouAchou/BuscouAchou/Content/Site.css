@@ -1,6 +1,6 @@
-﻿body 
+﻿body,html
 {
-    font-family: Cooper;
+    font-family: font-family:Georgia,Palatino Lynotipe,Times New Roman,serif;
 }
 header, footer, nav, section {
     display: block;
