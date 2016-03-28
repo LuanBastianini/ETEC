@@ -145,13 +145,6 @@
     <Content Include="Content\img\BuscouAchou.png" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
-    <Content Include="Content\img\Limonada_Suiça.jpg" />
-    <Content Include="Content\img\macarrao_com_salsicha.jpg" />
-    <Content Include="Content\img\Pudim.jpg" />
-    <Content Include="Content\img\salada.jpg" />
-    <Content Include="Content\img\sanduiche.jpg" />
-    <Content Include="Content\img\Torta.jpg" />
-    <Content Include="Content\img\yakisoba.jpg" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\owl.carousel.js" />

@@ -60,13 +60,20 @@
         list-style:none;
 
     }
-    #iconresc{
-    margin-top: 90px;
-    margin-left: 200px;
-    cursor: pointer;
+    .iconresc{
+        left: -60px;
+        cursor: pointer;
+        position: relative;
+        top: 90px;
     }
-    #modprep li{
-        list-style:decimal
+    .modprep li{
+        list-style-type:decimal;
+    }
+    .ing ul li {
+        list-style:none;
+    }
+    .mod ul li input {
+        margin:0;
     }
 
 </style>
@@ -93,7 +100,6 @@
             </div>
     </div>
 </div>
-
 <div class="container-fluid contlogo">
     <div class="row-fluid">
         <div class="span4 offset4" style="padding-left:30px;">
@@ -118,74 +124,89 @@
         <div class="span8 offset2" id="formrec">
             <ul>
                 <li class="lisrec">
-                    <div class="container-fluid">
+                    <div class="container-fluid" style="padding: 5px 5px">
                         <div class="row-fluid">
-                            <div class="span5" style="margin-top:5px;">
+                            <div class="span5">
                                 <img src="~/Content/img/Bolo_Chocolate.jpg" style="width:300px;height:190px;">
                             </div>
-                            <div class="span6" style=" margin-top: 20px;">
-                                <a href="@Url.Action("Receitas","Home")" style=" font-size:30px; text-decoration: none; color:black; ">Bolo de Chocolate</a>
+                            <div class="span6" style=" margin-top: 10px;">
+                                <p style=" font-size:30px; text-decoration: none; color:black;">Bolo de Chocolate</p>
                                 <p style="margin-top:20px">Enviado Por Luan Felipe</p>
-                                <i class=" icon-chevron-down" title="Visualizar Receita" id="iconresc"></i>
-                                <div>
-                                    <p>INGREDIENTES</p>
-                                    <ul>
-                                        <li>Ingredientes</li>
-                                        <li>Ingredientes</li>
-                                        <li>Ingredientes</li>
-                                        <li>Ingredientes</li>
-                                        <li>Ingredientes</li>
-                                    </ul>
-                                    <p>MODO DE PREPARO</p>
-                                    <ul id="modprep">
-                                        <li >IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                        <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                        <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                        <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                        <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                        <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-
-                                    </ul>
+                                <button type="button" class="btn btn-warning " >Imprimir Receita</button>
+                                <button type="button" class="btn btn-warning " >Lista de Compra</button>
+                                <i class=" icon-chevron-down iconresc" title="Visualizar Receita"></i>
+                                <div class="mod" style="display:none; margin-top:20px; padding-bottom:15px;">
+                                    <div class="ing" >
+                                        <p style="background-color:orange; color:white; text-align:center;">INGREDIENTES</p>
+                                        <ul>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                        </ul>
+                                    </div>
+                                    <div style="margin-top:10px">
+                                        <p style="background-color:orange; color:white; text-align:center;">MODO DE PREPARO</p>
+                                        <ul class="modprep">
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
                 <li class="lisrec">
-                    <div class="container-fluid">
+                    <div class="container-fluid" style="padding: 5px 5px">
                         <div class="row-fluid">
-                            <div class="span5" style="margin-top:5px;">
-                                <img src="~/Content/img/macarrao_com_salsicha.jpg" style="width:300px;height:190px;">
+                            <div class="span5">
+                                <img src="~/Content/img/Bolo_Chocolate.jpg" style="width:300px;height:190px;">
                             </div>
-                            <div class="span6" style=" margin-top: 20px;height:190px;">
-                                <a href="@Url.Action("Receitas","Home")" style=" font-size:30px; text-decoration: none; color:black; ">Macarrão com Salsicha</a>
+                            <div class="span6" style=" margin-top: 10px;">
+                                <p style=" font-size:30px; text-decoration: none; color:black;">Bolo de Chocolate</p>
                                 <p style="margin-top:20px">Enviado Por Luan Felipe</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="lisrec">
-                    <div class="container-fluid">
-                        <div class="row-fluid">
-                            <div class="span5" style="margin-top:5px;">
-                                <img src="~/Content/img/macarrao_com_salsicha.jpg" style="width:300px;height:190px;">
-                            </div>
-                            <div class="span6" style=" margin-top: 20px;height:190px;">
-                                <a href="@Url.Action("Receitas","Home")" style=" font-size:30px; text-decoration: none; color:black; ">Macarrão com Salsicha</a>
-                                <p style="margin-top:20px">Enviado Por Luan Felipe</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="lisrec">
-                    <div class="container-fluid">
-                        <div class="row-fluid">
-                            <div class="span5" style="margin-top:5px;">
-                                <img src="~/Content/img/macarrao_com_salsicha.jpg" style="width:300px;height:190px;">
-                            </div>
-                            <div class="span6" style=" margin-top: 20px;height:190px;">
-                                <a href="@Url.Action("Receitas","Home")" style=" font-size:30px; text-decoration: none; color:black; ">Macarrão com Salsicha</a>
-                                <p style="margin-top:20px">Enviado Por Luan Felipe</p>
+                                <button type="button" class="btn btn-warning ">Imprimir Receita</button>
+                                <button type="button" class="btn btn-warning ">Lista de Compra</button>
+                                <i class=" icon-chevron-down iconresc" title="Visualizar Receita"></i>
+                                <div class="mod" style="display:none; margin-top:20px; padding-bottom:15px;">
+                                    <div class="ing" >
+                                        <p style="background-color:orange; color:white; text-align:center;">INGREDIENTES</p>
+                                        <ul>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                            <li><input type="checkbox" /> Ingredientes</li>
+                                        </ul>
+                                    </div>
+                                    <div style="margin-top:10px">
+                                        <p style="background-color:orange; color:white; text-align:center;">MODO DE PREPARO</p>
+                                        <ul class="modprep">
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,6 +240,21 @@
         $('.contbusca').addClass('busctop');
         $('.divrec').fadeIn();
         $('#Busca').focus();
+    });
+    $('.iconresc').click(function () {
+        if ($(this).hasClass('ativo')) {
+            $(this).removeClass('icon-chevron-up')
+            $(this).removeClass('ativo')
+            $(this).addClass('icon-chevron-down')
+            $(this).siblings('.mod').slideUp().css("display", "none");
+            $(this).css("top", "90px");
+        } else {
+            $(this).removeClass('icon-chevron-down')
+            $(this).addClass('icon-chevron-up')
+            $(this).addClass('ativo')
+            $(this).siblings('.mod').css("display", "block").slideDown();
+            $(this).css("top", "435px");
+        }
     });
 </script>
 
