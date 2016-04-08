@@ -16,9 +16,24 @@ namespace BuscouAchou.Controllers
             return View();
         }
 
-        public ActionResult Entrar()
+        public ActionResult Cadastro()
         {
-            return View("_Entrar");
+            return View("_Cadastro");
+        }
+
+        public ActionResult Receitas()
+        {
+            return View("_Receitas");
+        }
+
+        public ActionResult DadosUsua()
+        {
+            return View("_DadosUsua");
+        }
+
+        public ActionResult CadReceitas()
+        {
+            return View("_CadReceitas");
         }
 
     }

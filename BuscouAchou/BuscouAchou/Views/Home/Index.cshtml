@@ -1,262 +1,55 @@
 ﻿@{
     ViewBag.Title = "BUSCAR - BuscouAchouReceitas";
 }
-<style>
-    .logoImg {
-        width: 90%;
-    }
 
-    .contlogo {
-        margin-top: 150px;
-        margin-bottom: 10px;
-        padding: 0;
-        
-    }
-    .translogo {
-        transform:translate(-200px,-190px);
-        width:50%;
-        position:absolute;
-    }
-    .busctop {
-        top: 20px;
-        position: absolute;
-        width: 80%;
-    }
-    #Busca {
-        width: 500px;
-        height: 30px;
-        margin: 0;
-        margin-left: 40px;
-    }
-    #Busca:focus {
-        border-color:#F58634;
-        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px #F58634;
-    }
-
-    .btnB {
-        height: 40px;
-    }
-
-    #contlogin {
-         width:200px;
-         height:200px;
-         box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px black;
-    }
-    #formrec{
-         margin-top:90px;
-    }
-
-    .dadosLogin {
-        margin-left:10px;
-    }
-
-    .inpdados {
-        width: 150px;
-    }
-    .lisrec {
-        width: 800px;
-        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 20px;
-        margin-bottom:10px;
-        list-style:none;
-
-    }
-    .iconresc{
-        left: -60px;
-        cursor: pointer;
-        position: relative;
-        top: 90px;
-    }
-    .modprep li{
-        list-style-type:decimal;
-    }
-    .ing ul li {
-        list-style:none;
-    }
-    .mod ul li input {
-        margin:0;
-    }
-
-</style>
-
-<div class="forlogin" style="display:none; position:absolute;width:100%;">
-        <div class="row-fluid" style="margin-top:5px;" >
-            <div class=" offset9 span2" style=" padding-left:100px;">
-                <div id="contlogin">
-                    <form action="/" method="post">
-                        <fieldset>
-                            <legend style="text-align:center">Login <i style="margin-left:90px; cursor:pointer;" class="icon-remove remove"></i></legend>
-                            <div class="dadosLogin">
-                                <input autofocus type="text" placeholder="NomeID" class="inpdados" />
-                            </div>
-                            <div class ="dadosLogin">
-                                <input type="text" placeholder="Senha" class="inpdados"  />
-                            </div>
-                            <div class ="dadosLogin">
-                                <button type="submit" class="btn btn-warning" style="height:30px">Logar</button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-    </div>
-</div>
-<div class="container-fluid contlogo">
-    <div class="row-fluid">
-        <div class="span4 offset4" style="padding-left:30px;">
-            <img class="logoImg" src="~/Content/img/BAReceitas.jpg">
+<div class="container">
+    <div id="contlogo" class="jumbotron" style="background-color:white; padding-top:100px;">
+        <img id="imglogo"  title="Encontre sua receita." class=" btn btn-link blockCenter img-responsive" alt="Responsive image" src="~/Content/img/BAReceitas.jpg" style="padding-bottom:10px; width:50%" />
+        <br />
+        <div id="inputbusca" class="input-group" style="width:70%; margin:0 auto">
+            <input type="text" autofocus class=" form-control pull-left" placeholder="Encontre sua receita..." />
+            <span class="input-group-btn"><button style="outline:none;" id="buscaReceitas" type="button" class="btn btn-warning">Buscar</button></span>
+        </div>  
         </div>
-    </div>
 </div>
-<div class="container-fluid contbusca">
-    <div class="row-fluid">
-        <div class="span6 offset3" >
-            <form class="form-search">
-                <div class="input-append" >                
-                    <input autofocus type="text" id="Busca" placeholder="Encontre sua receita...">
-                    <button type="button" class="btn btn-warning btnB" style="border-radius:0 4px 4px 0;">Buscar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="container-fluid divrec " style="display:none">
-    <div class="row-fluid">
-        <div class="span8 offset2" id="formrec">
-            <ul>
-                <li class="lisrec">
-                    <div class="container-fluid" style="padding: 5px 5px">
-                        <div class="row-fluid">
-                            <div class="span5">
-                                <img src="~/Content/img/Bolo_Chocolate.jpg" style="width:300px;height:190px;">
-                            </div>
-                            <div class="span6" style=" margin-top: 10px;">
-                                <p style=" font-size:30px; text-decoration: none; color:black;">Bolo de Chocolate</p>
-                                <p style="margin-top:20px">Enviado Por Luan Felipe</p>
-                                <button type="button" class="btn btn-warning " >Imprimir Receita</button>
-                                <button type="button" class="btn btn-warning " >Lista de Compra</button>
-                                <i class=" icon-chevron-down iconresc" title="Visualizar Receita"></i>
-                                <div class="mod" style="display:none; margin-top:20px; padding-bottom:15px;">
-                                    <div class="ing" >
-                                        <p style="background-color:orange; color:white; text-align:center;">INGREDIENTES</p>
-                                        <ul>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                        </ul>
-                                    </div>
-                                    <div style="margin-top:10px">
-                                        <p style="background-color:orange; color:white; text-align:center;">MODO DE PREPARO</p>
-                                        <ul class="modprep">
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="lisrec">
-                    <div class="container-fluid" style="padding: 5px 5px">
-                        <div class="row-fluid">
-                            <div class="span5">
-                                <img src="~/Content/img/Bolo_Chocolate.jpg" style="width:300px;height:190px;">
-                            </div>
-                            <div class="span6" style=" margin-top: 10px;">
-                                <p style=" font-size:30px; text-decoration: none; color:black;">Bolo de Chocolate</p>
-                                <p style="margin-top:20px">Enviado Por Luan Felipe</p>
-                                <button type="button" class="btn btn-warning ">Imprimir Receita</button>
-                                <button type="button" class="btn btn-warning ">Lista de Compra</button>
-                                <i class=" icon-chevron-down iconresc" title="Visualizar Receita"></i>
-                                <div class="mod" style="display:none; margin-top:20px; padding-bottom:15px;">
-                                    <div class="ing" >
-                                        <p style="background-color:orange; color:white; text-align:center;">INGREDIENTES</p>
-                                        <ul>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                            <li><input type="checkbox" /> Ingredientes</li>
-                                        </ul>
-                                    </div>
-                                    <div style="margin-top:10px">
-                                        <p style="background-color:orange; color:white; text-align:center;">MODO DE PREPARO</p>
-                                        <ul class="modprep">
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                            <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="modal hide fade"  id="modalcad" style="display:none">
-</div>
-<script type="text/javascript">
-   
-    $('#btncad').click(function () {
-        $.get("@Url.Action("Entrar", "Home")").success(function (data) {
-            $('#modalcad').html(data);
-            $('#modalcad').modal('show');
-        }).error(function () {
-            console.log("ERRO");
+
+<div class="container-fluid" id="receitasBuscadas" style="display:none"></div>
+<div id="modalcad" class="modal fade" tabindex="-1" role="dialog"></div>
+<div id="modalalt" class="modal fade" tabindex="-1" role="dialog"></div>
+
+    <script type="text/javascript">
+
+        $('#btncad').click(function () {
+            $.get("@Url.Action("Cadastro", "Home")").success(function (data) {
+                $('#modalcad').html(data);
+                $('#modalcad').modal('show');
+            }).error(function () {
+                console.log("ERRO");
+            });
         });
-    });
-    $('#btnent').click(function () {
-        $('.forlogin').slideDown();
-    });
-
-    $('.remove').click(function () {
-        $(this).closest("div.forlogin").slideUp();
-    });
-
-    $('.btnB').click(function () {
-        $('.contlogo').addClass('translogo');
-        $('.contbusca').addClass('busctop');
-        $('.divrec').fadeIn();
-        $('#Busca').focus();
-    });
-    $('.iconresc').click(function () {
-        if ($(this).hasClass('ativo')) {
-            $(this).removeClass('icon-chevron-up')
-            $(this).removeClass('ativo')
-            $(this).addClass('icon-chevron-down')
-            $(this).siblings('.mod').slideUp().css("display", "none");
-            $(this).css("top", "90px");
-        } else {
-            $(this).removeClass('icon-chevron-down')
-            $(this).addClass('icon-chevron-up')
-            $(this).addClass('ativo')
-            $(this).siblings('.mod').css("display", "block").slideDown();
-            $(this).css("top", "435px");
-        }
-    });
-</script>
+        $('#btnent').click(function () {
+            $('#formnav').hide();
+            $('#btnSnav').show();
+        });
+        $('#meusdados').click(function () {
+            $.get("@Url.Action("DadosUsua", "Home")").success(function (data) {
+                $('#modalalt').html(data);
+                $('#modalalt').modal('show');
+            }).error(function () {
+                console.log("ERRO");
+            });
+        });
+        $('#buscaReceitas').click(function () {
+            $.get("@Url.Action("Receitas", "Home")").success(function (data) {
+                $('#imglogo').css("width", "25%");
+                $('#inputbusca').addClass('centerinput');
+                $('#contlogo').css("padding", "0");
+                $('#receitasBuscadas').html(data).show();
+            }).error(function () {
+                console.log("ERRO");
+            });
+        });
+    </script>
 
 
 

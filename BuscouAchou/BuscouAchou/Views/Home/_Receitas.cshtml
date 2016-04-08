@@ -1,0 +1,71 @@
+﻿@{
+    Layout = null;
+}
+<div class="container">
+    <div id="formrec" class="col-md-12" style="background-color:white; padding:0 200px 0 200px;">
+        <ul style="padding:0">
+            <li class="lisrec mbottom">
+                <div class="container-fluid" style="padding: 5px 0">
+                    <div class="col-md-4">
+                        <img src="~/Content/img/Bolo_Chocolate.jpg" style="width:100%">
+                    </div>
+                    <div class="col-md-7" style=" margin-top: 10px;padding:0;">
+                        <p style=" font-size:30px; text-decoration: none; color:black;">Bolo de Chocolate</p>
+                        <p>Enviado Por Luan Felipe</p>
+                        <button type="button" class="btn btn-warning ">Imprimir Receita</button>
+                        <button type="button" class="btn btn-warning ">Lista de Compra</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="iconresc">
+                            <i class="glyphicon glyphicon-plus" style="color:white;"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-12 mod" style="display:none; margin-top:20px; padding-bottom:15px;">
+                        <div class="ing">
+                            <p style="background-color: rgba(255, 152, 0, 0.55); color:white; text-align:center;">INGREDIENTES</p>
+                            <ul>
+                                <li><input type="checkbox" /> Ingredientes</li>
+                                <li><input type="checkbox" /> Ingredientes</li>
+                                <li><input type="checkbox" /> Ingredientes</li>
+                                <li><input type="checkbox" /> Ingredientes</li>
+                                <li><input type="checkbox" /> Ingredientes</li>
+                                <li><input type="checkbox" /> Ingredientes</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top:10px">
+                            <p style="background-color: rgba(255, 152, 0, 0.55); color:white; text-align:center;">MODO DE PREPARO</p>
+                               <ul class="modprep">
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    $('.iconresc').click(function (){
+        if ($(this).hasClass('ativo')){
+           $('.iconresc i').removeClass('glyphicon glyphicon-minus')
+            $(this).removeClass('ativo')
+            $('.iconresc i').addClass('glyphicon glyphicon-plus')
+            $('.mod').hide();
+        }else{
+            $('.iconresc i').removeClass('glyphicon glyphicon-plus')
+            $('.iconresc i').addClass('glyphicon glyphicon-minus')
+            $(this).addClass('ativo')
+            $('.mod').show();
+        }
+    });
+</script>

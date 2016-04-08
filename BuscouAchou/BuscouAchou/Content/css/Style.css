@@ -1,0 +1,38 @@
+﻿
+.mtop {
+margin-top:10px;
+}
+.mbottom {
+    margin-bottom:10px;
+}
+ 
+.blockCenter {
+    margin:0 auto;
+    display:block;
+}
+
+.lisrec{
+    list-style:none;
+    border-style:outset;
+}
+.centerinput {
+    margin:0 auto;
+    width:50% !important;
+}
+.iconStyle {
+    top: -177px;
+    left: 14px;
+    font-size: 25px;
+    color: white;
+}
+.iconresc {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 138, 0, 0.89);
+    border: none;
+    outline: none;
+}
+.modprep li{
+    list-style:decimal;
+}
