@@ -15,7 +15,7 @@
         </div>
         <div class="row">
                 <div class="modal-body" style="padding-bottom:30px;">
-                        <form action="/" method="post">
+                    @using (Html.BeginForm("CadReceitas", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })) { 
                             <div class="col-md-12">
                                 <div>
                                     <h4 style="border-left:5px solid orange">Nome e informações</h4>
@@ -26,7 +26,7 @@
                                     </div>
                                     <div id="inputbusca" class="mtop" style="width:90%;">
                                         <label>Escolha a imagem:</label>
-                                        <input class="file" type="file" placeholder="Foto da receita">
+                                        <input name="File" type="file" placeholder="Foto da receita">
                                     </div>
                                     <div class="col-md-6" style="padding:10px 0 0 0;"><label>Liberar Compartilhamento: </label></div>
                                     <div class="col-md-6" style="padding:0">
@@ -102,7 +102,7 @@
                             <div>
                                 <button type="submit" class="btn btn-warning btn blockCenter">Salvar</button>
                             </div>
-                        </form>
+                            }
                     </div>
             </div>
         </div>

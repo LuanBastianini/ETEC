@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BuscouAchou.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,9 +10,6 @@ namespace BuscouAchou.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public ActionResult Index()
         {
             return View();
@@ -23,6 +22,7 @@ namespace BuscouAchou.Controllers
 
         public ActionResult Receitas()
         {
+            ViewBag.filename = "teste1.jpg";
             return View("_Receitas");
         }
 
@@ -36,5 +36,16 @@ namespace BuscouAchou.Controllers
             return View("_CadReceitas");
         }
 
+        [HttpPost]
+        public ActionResult CadReceitas(ImagensModel imagem)
+        {
+            if (imagem.file.ContentLength > 0) 
+            {
+                var filename = "teste2";
+                var path = Path.Combine(Server.MapPath("~/Content/ImagemReceitas"), filename+".jpg");
+                imagem.file.SaveAs(path);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
