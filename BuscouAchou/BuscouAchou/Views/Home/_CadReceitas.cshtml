@@ -1,3 +1,110 @@
 ﻿@{
     Layout = null;
 }
+
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 style="border-left:5px solid orange">Enviar Receitas</h3>
+        <div class="col-md-10">
+            <div class="headcadrec">
+                <p style="text-align:center; color:white;">É muito fácil enviar sua receita, basta preencher o formulario corretamente, no final analizar se as quantidades estão corretas.</p>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+                <div class="modal-body" style="padding-bottom:30px;">
+                        <form action="/" method="post">
+                            <div class="col-md-12">
+                                <div>
+                                    <h4 style="border-left:5px solid orange">Nome e informações</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <input class="form-control mtop " type="text" placeholder="Nome da Receita" style="width:90%">
+                                    </div>
+                                    <div id="inputbusca" class="mtop" style="width:90%;">
+                                        <label>Escolha a imagem:</label>
+                                        <input class="file" type="file" placeholder="Foto da receita">
+                                    </div>
+                                    <div class="col-md-6" style="padding:10px 0 0 0;"><label>Liberar Compartilhamento: </label></div>
+                                    <div class="col-md-6" style="padding:0">
+                                        <div class="radio" style="display:inline-block;">
+                                            <label><input type="radio" name="optradio">Sim</label>
+                                        </div>
+                                        <div class="radio" style="display:inline-block;">
+                                            <label><input type="radio" name="optradio">Não</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4" style="padding:0"><label>Tempo de Preparo / Minutos: </label></div>
+                                        <div class="col-md-2" style="padding:0"><input class="form-control " type="text" style="width:50px"></div>
+                                        <div class="col-md-2" style="padding:0"><i style="font-size: 38px;" class="glyphicon glyphicon-hourglass"></i></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-4" style="padding:0"><label>Rendimentos / Porção: </label></div>
+                                        <div class="col-md-2" style="padding:0"><input class="form-control " type="text" style="width:50px"></div>
+                                        <div class="col-md-2" style="padding:0"><i style="font-size: 38px;" class="glyphicon glyphicon-cutlery"></i></div>
+                                    </div>
+    
+                                </div>
+                                <div>
+                                    <h4 style="border-left:5px solid orange"></h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="padding:20px 0; border-top: 1px solid rgba(16, 15, 15, 0.2);">
+                                <div class="col-md-6">
+                                    <div>
+                                        <h4 style="border-left:5px solid orange">Ingredientes</h4>
+                                    </div>
+                                    <div>
+                                        <p>Não use caracter especiais ou numeração</p>
+                                    </div>
+                                    <div id="inputbusca" class="input-group mtop" style="width:100%;">
+                                        <input class="form-control " type="text" placeholder="Adicione Ingrediente">
+                                        <span class="input-group-btn"><button style="outline:none;" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" style="color:white;"></i></button></span>
+                                    </div>
+                                    <div class="msgcadrec">
+                                        <ul>
+                                            <li>Ingrediente</li>
+                                            <li>Ingrediente</li>
+                                            <li>Ingrediente</li>
+                                            <li>Ingrediente</li>
+                                            <li>Ingrediente</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <h4 style="border-left:5px solid orange">Modo de preparo</h4>
+                                    </div>
+                                    <div>
+                                        <p>Escreva um modo por vez, pois sera listado em ordem numerica</p>
+                                    </div>
+                                    <div class="input-group mtop" style="width:100%;">
+                                        <input class="form-control " type="text" placeholder="Adicionar modo de preparo">
+                                        <span class="input-group-btn"><button style="outline:none;" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" style="color:white;"></i></button></span>
+                                    </div>
+                                    <div class="msgcadrec">
+                                        <ul>
+                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
+                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
+                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
+                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
+                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-warning btn blockCenter">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+

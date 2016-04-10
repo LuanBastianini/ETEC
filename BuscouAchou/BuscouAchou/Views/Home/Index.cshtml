@@ -4,7 +4,7 @@
 
 <div class="container">
     <div id="contlogo" class="jumbotron" style="background-color:white; padding-top:100px;">
-        <img id="imglogo"  title="Encontre sua receita." class=" btn btn-link blockCenter img-responsive" alt="Responsive image" src="~/Content/img/BAReceitas.jpg" style="padding-bottom:10px; width:50%" />
+        <a href="@Url.Action("Index","Home")"><img id="imglogo" title="Encontre sua receita." class="blockCenter img-responsive" alt="Responsive image" src="~/Content/img/BAReceitas.jpg" style="padding-bottom:10px; width:50%" /></a>
         <br />
         <div id="inputbusca" class="input-group" style="width:70%; margin:0 auto">
             <input type="text" autofocus class=" form-control pull-left" placeholder="Encontre sua receita..." />
@@ -14,8 +14,9 @@
 </div>
 
 <div class="container-fluid" id="receitasBuscadas" style="display:none"></div>
-<div id="modalcad" class="modal fade" tabindex="-1" role="dialog"></div>
-<div id="modalalt" class="modal fade" tabindex="-1" role="dialog"></div>
+<div id="modalcad" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
+<div id="modalalt" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
+<div id="modalcadrec" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
 
     <script type="text/javascript">
 
@@ -35,6 +36,14 @@
             $.get("@Url.Action("DadosUsua", "Home")").success(function (data) {
                 $('#modalalt').html(data);
                 $('#modalalt').modal('show');
+            }).error(function () {
+                console.log("ERRO");
+            });
+        });
+        $('#btncadrec').click(function () {
+            $.get("@Url.Action("CadReceitas", "Home")").success(function (data) {
+                $('#modalcadrec').html(data);
+                $('#modalcadrec').modal('show');
             }).error(function () {
                 console.log("ERRO");
             });

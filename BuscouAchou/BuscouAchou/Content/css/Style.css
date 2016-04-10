@@ -36,3 +36,14 @@ margin-top:10px;
 .modprep li{
     list-style:decimal;
 }
+.headcadrec {
+    background-color: rgba(255, 152, 0, 0.55);
+    border-radius: 4px;
+    height: 43px;
+    margin-left: 196px;
+}
+.msgcadrec{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.21);
+    margin-top: 10px;
+}
