@@ -236,6 +236,8 @@
     <Content Include="Views\Home\_Receitas.cshtml" />
     <Content Include="Views\Home\_DadosUsua.cshtml" />
     <Content Include="Views\Home\_CadReceitas.cshtml" />
+    <Content Include="Views\Home\_MinhasReceitas.cshtml" />
+    <Content Include="Views\Home\_AltReceita.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

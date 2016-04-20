@@ -17,6 +17,8 @@
 <div id="modalcad" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
 <div id="modalalt" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
 <div id="modalcadrec" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
+<div id="modalMinhasRec" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
+<div id="modalAltRec" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
 
     <script type="text/javascript">
 
@@ -48,6 +50,25 @@
                 console.log("ERRO");
             });
         });
+
+        $('#btnMrec').click(function () {
+            $.get("@Url.Action("MinhasReceitas", "Home")").success(function (data) {
+                $('#modalMinhasRec').html(data);
+                $('#modalMinhasRec').modal('show');
+            }).error(function () {
+                console.log("ERRO");
+            });
+        });
+
+        $(Document).on('click', '#altReceita', function () {
+            $.get("@Url.Action("AlterarReceita", "Home")").success(function (data) {
+                $('#modalAltRec').html(data);
+                $('#modalAltRec').modal('show');
+            }).error(function () {
+                console.log("ERRO");
+            });
+        });
+
         $('#buscaReceitas').click(function () {
             $.get("@Url.Action("Receitas", "Home")").success(function (data) {
                 $('#imglogo').css("width", "25%");

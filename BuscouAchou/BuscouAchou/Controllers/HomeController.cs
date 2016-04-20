@@ -22,7 +22,7 @@ namespace BuscouAchou.Controllers
 
         public ActionResult Receitas()
         {
-            ViewBag.filename = "teste1.jpg";
+            ViewBag.filename = "teste2.jpg";
             return View("_Receitas");
         }
 
@@ -47,5 +47,16 @@ namespace BuscouAchou.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult MinhasReceitas() 
+        {
+            return View("_MinhasReceitas");        
+        }
+
+        public ActionResult AlterarReceita()
+        {
+            return View("_AltReceita");
+        }
+
     }
 }
