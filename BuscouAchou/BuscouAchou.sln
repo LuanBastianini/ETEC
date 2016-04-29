@@ -5,9 +5,7 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuscouAchou", "BuscouAchou\BuscouAchou.csproj", "{C9FBAC03-C021-4DD2-8185-B4DDC67FBD4B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D826E551-0B72-46C0-81D8-0727D1FA6A0B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{0AAE42B2-9A41-4304-A397-1054C4E81450}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuscouAchouRepository", "BuscouAchouRepository\BuscouAchouRepository.csproj", "{B03FCEEE-84F9-424B-8CDD-DBFB94C79F81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,11 +17,12 @@ Global
 		{C9FBAC03-C021-4DD2-8185-B4DDC67FBD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9FBAC03-C021-4DD2-8185-B4DDC67FBD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9FBAC03-C021-4DD2-8185-B4DDC67FBD4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B03FCEEE-84F9-424B-8CDD-DBFB94C79F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B03FCEEE-84F9-424B-8CDD-DBFB94C79F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B03FCEEE-84F9-424B-8CDD-DBFB94C79F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B03FCEEE-84F9-424B-8CDD-DBFB94C79F81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C9FBAC03-C021-4DD2-8185-B4DDC67FBD4B} = {D826E551-0B72-46C0-81D8-0727D1FA6A0B}
 	EndGlobalSection
 EndGlobal
