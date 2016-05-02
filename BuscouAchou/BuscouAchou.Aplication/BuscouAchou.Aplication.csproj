@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B03FCEEE-84F9-424B-8CDD-DBFB94C79F81}</ProjectGuid>
+    <ProjectGuid>{D0B158A1-F898-4D78-8E04-203FE32F78C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BuscouAchouRepository</RootNamespace>
-    <AssemblyName>BuscouAchouRepository</AssemblyName>
+    <RootNamespace>BuscouAchou.Aplication</RootNamespace>
+    <AssemblyName>BuscouAchou.Aplication</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,13 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BuscouAchouBaseRepository\BuscouAchouBaseRepository.csproj">
-      <Project>{18956faa-ae54-4324-a7d0-af814b8da89a}</Project>
-      <Name>BuscouAchouBaseRepository</Name>
+    <ProjectReference Include="..\BuscouAchou.Domain\BuscouAchou.Domain.csproj">
+      <Project>{d94fd0c2-10c4-4b84-873a-3d2f8d4c4ec6}</Project>
+      <Name>BuscouAchou.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BuscouAchouRepository\BuscouAchouRepository.csproj">
+      <Project>{b03fceee-84f9-424b-8cdd-dbfb94c79f81}</Project>
+      <Name>BuscouAchouRepository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
