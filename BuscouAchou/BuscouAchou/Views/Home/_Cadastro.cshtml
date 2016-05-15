@@ -5,34 +5,48 @@
     .inpcad{
         margin-bottom:10px;
     }
+    .erro {
+    border-color: #E80B0B;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(232,11,11,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(232,11,11,.6);
+    }
+
+    .ok {
+    border-color: #37E210;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(55,226,16,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(55,226,16,.6);
+    }
 </style>
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <p id="txtMsgSuccess" style="display:none" class="bg-success"></p>
+            <p id="txtMsgWarning" style="display:none" class="bg-warning"></p>
             <h3>CADASTRE-SE</h3>
         </div>
         <div class="row">
             <div class="col-lg-6" style="border-right:2px solid black; margin:20px 0;">
                 <div class="modal-body">
-                    <form action="/" method="post">
+                    <form>
                         <div>
-                            <input class="form-control inpcad" autofocus type="text" placeholder="Nome">
+                            <input id="nomeUsua" name="Nom_Usua" class="form-control inpcad" autofocus type="text" placeholder="Nome Completo" maxlength="40">
                         </div>
                         <div>
-                            <input class="form-control inpcad" autofocus type="text" placeholder="E-mail">
+                            <input id="email" name="Email" class="form-control inpcad" autofocus type="text" placeholder="E-mail">
                         </div>
                         <div>
-                            <input class="form-control inpcad" autofocus type="password" placeholder="Senha">
+                            <input id="numSenha" name="Num_Senha" class="form-control inpcad" autofocus type="password" placeholder="Senha">
                         </div>
                         <div>
-                            <input class="form-control inpcad" autofocus type="password" placeholder="Confirma Senha">
+                            <input id="numConfSenha" class="form-control inpcad" autofocus type="password" placeholder="Confirma Senha">
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-warning btn">Finalizar</button>
+                            <button disabled="" id="btnFinalizaCad" type="button" class="btn btn-warning btn">Finalizar</button>
                         </div>
                     </form>
-
                 </div>
             </div>
             <div class="col-lg-6" style="margin:20px 0">
@@ -44,5 +58,114 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $('#btnFinalizaCad').click(function () {
+        $.post("@Url.Action("PostUsuario", "Home")",{
+            Nom_Usua:   $("#nomeUsua").val(),
+            Email:      $("#email").val(),
+            Num_Senha:  $("#numSenha").val()
+        }).success(function () {
+            $('#txtMsgWarning').slideUp();
+            $('#txtMsgSuccess').text("USUARIO CADASTRADO COM SUCESSO").slideDown();
+            $("#nomeUsua").val("");
+            $("#email").val("");
+            $("#numSenha").val("");
+            $("#numConfSenha").val("");
+        }).error(function () {
+            $('#txtMsgWarning').text("ERRO AO INSERIR USUARIO").slideDown();
+        });
+    });
+
+    $('#nomeUsua').blur(function () {
+        if (!$("#nomeUsua").val()) {
+            $('#nomeUsua').removeClass("ok");
+            $('#nomeUsua').addClass("erro");
+            $('#btnFinalizaCad').prop("disabled", true);
+            return false;
+        } else {
+            $('#nomeUsua').removeClass("erro");
+            $('#nomeUsua').addClass("ok");
+        }
+
+        habilitaBtnFinaliza()
+    });
+
+    $('#email').blur(function () {
+        if (!$("#email").val()) {
+            $('#email').removeClass("ok");
+            $('#email').addClass("erro");
+            $('#btnFinalizaCad').prop("disabled", true);
+            return false;
+        }
+
+        $.get("@Url.Action("VerificaUsuario", "Home")",{
+            Email: $("#email").val()
+        }).success(function () {
+            if (validateEmail($('#email').val())) {
+                $('#email').removeClass("erro");
+                $('#email').addClass("ok");
+                $('#txtMsgWarning').slideUp();
+            } else {
+                $('#email').removeClass("ok");
+                $('#email').addClass("erro");
+                $('#txtMsgWarning').text("EMAIL INVALIDO").slideDown();
+            }
+        }).error(function () {
+            $('#email').removeClass("ok");
+            $('#email').addClass("erro");
+            $('#btnFinalizaCad').prop("disabled", true);
+        });
+
+        habilitaBtnFinaliza()
+    });
+
+    $('#numSenha').blur(function () {
+        if (!$("#numSenha").val()) {
+            $('#numSenha').removeClass("ok");
+            $('#numSenha').addClass("erro");
+            $('#btnFinalizaCad').prop("disabled", true);
+            return false;
+        } else {
+            $('#numSenha').removeClass("erro");
+            $('#numSenha').addClass("ok");
+        }
+
+        habilitaBtnFinaliza()
+    });
+
+    $('#numConfSenha').blur(function () {
+        if (!($("#numSenha").val() == $("#numConfSenha").val())) {
+            $('#numConfSenha').removeClass("ok");
+            $('#numConfSenha').addClass("erro");
+            $('#btnFinalizaCad').prop("disabled", true);
+            return false;
+        } else {
+            $('#numConfSenha').removeClass("erro");
+            $('#numConfSenha').addClass("ok");
+        }
+        if (!$("#numConfSenha").val()) {
+            $('#numConfSenha').removeClass("ok");
+            $('#numConfSenha').addClass("erro");
+            $('#btnFinalizaCad').prop("disabled", true);
+            return false;
+        } else {
+            $('#numConfSenha').removeClass("erro");
+            $('#numConfSenha').addClass("ok");
+            habilitaBtnFinaliza()
+        }
+    });
+
+    function habilitaBtnFinaliza() {
+        if ($('#nomeUsua').hasClass('ok') && $('#email').hasClass('ok') && $('#numSenha').hasClass('ok') && $('#numConfSenha').hasClass('ok'))
+            $('#btnFinalizaCad').prop("disabled", false);
+    }
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@@']+(\.[^<>()\[\]\\.,;:\s@@']+)*)|('.+'))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+</script>
 
 

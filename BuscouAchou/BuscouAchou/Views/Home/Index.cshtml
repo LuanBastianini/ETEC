@@ -30,10 +30,37 @@
                 console.log("ERRO");
             });
         });
+
         $('#btnent').click(function () {
-            $('#formnav').hide();
-            $('#btnSnav').show();
+            if (!$("#emailLog").val()) {
+                $('#emailLog').removeClass("ok");
+                $('#emailLog').addClass("erro");
+                return false;
+            }
+
+            if (!$("#senhaLog").val()) {
+                $('#senhaLog').removeClass("ok");
+                $('#senhaLog').addClass("erro");
+                return false;
+            }
+
+            $.get("@Url.Action("VerificaUsuario", "Home")",{
+                Email: $("#emailLog").val()
+            }).success(function () {
+                if (validateEmail($('#emailLog').val())) {
+                    $('#formnav').hide();
+                    $('#btnSnav').show();
+                } else {
+                    $('#emailLog').removeClass("ok");
+                    $('#emailLog').addClass("erro");
+                    $('#btncad').prop("disabled", true);
+                }
+            }).error(function () {
+                $('#emailLog').removeClass("ok");
+                $('#emailLog').addClass("erro");
+            });
         });
+
         $('#meusdados').click(function () {
             $.get("@Url.Action("DadosUsua", "Home")").success(function (data) {
                 $('#modalalt').html(data);

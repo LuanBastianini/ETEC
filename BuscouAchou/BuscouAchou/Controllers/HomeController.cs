@@ -1,8 +1,13 @@
-﻿using BuscouAchou.Models;
+﻿using BuscouAchou.Domain.Entities;
+using BuscouAchou.Models;
+using BuscouAchouRepository;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +15,8 @@ namespace BuscouAchou.Controllers
 {
     public class HomeController : Controller
     {
+        Repository repository = new Repository();
+
         public ActionResult Index()
         {
             return View();
@@ -18,6 +25,38 @@ namespace BuscouAchou.Controllers
         public ActionResult Cadastro()
         {
             return View("_Cadastro");
+        }
+
+        [HttpPost]
+        public ActionResult PostUsuario(BAR_Usuario entitie)
+        {
+            try
+            {
+                repository.Post(entitie);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
+
+        }
+
+        public ActionResult VerificaUsuario(string Email) 
+        {
+            try
+            {
+                var request = repository.VerificaUsuario(Email);
+                if(request == 1)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception ex) 
+            {
+                return View("Error", ex.Message);
+            }
+        
         }
 
         public ActionResult Receitas()
@@ -58,6 +97,5 @@ namespace BuscouAchou.Controllers
         {
             return View("_AltReceita");
         }
-
-    }
+   }
 }

@@ -50,3 +50,9 @@ D:\ETEC\TCC\BuscouAchou\BuscouAchou\bin\System.Web.WebPages.Razor.xml
 D:\ETEC\TCC\BuscouAchou\BuscouAchou\obj\Release\BuscouAchou.csprojResolveAssemblyReference.cache
 D:\ETEC\TCC\BuscouAchou\BuscouAchou\obj\Release\BuscouAchou.dll
 D:\ETEC\TCC\BuscouAchou\BuscouAchou\obj\Release\BuscouAchou.pdb
+D:\ETEC\TCC\BuscouAchou\BuscouAchou\bin\BuscouAchou.Domain.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchou\bin\BuscouAchouBaseRepository.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchou\bin\BuscouAchouRepository.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchou\bin\BuscouAchou.Domain.pdb
+D:\ETEC\TCC\BuscouAchou\BuscouAchou\bin\BuscouAchouBaseRepository.pdb
+D:\ETEC\TCC\BuscouAchou\BuscouAchou\bin\BuscouAchouRepository.pdb

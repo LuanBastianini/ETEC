@@ -13,8 +13,9 @@ namespace BuscouAchou.Infra.Data
     {
         protected readonly IDatabaseConnection Connection;
 
-        public BaseRepository(IDatabaseConnection connection)
+        public BaseRepository()
         {
+            DatabaseConnection connection = new DatabaseConnection();
             Connection = connection;
         }
 

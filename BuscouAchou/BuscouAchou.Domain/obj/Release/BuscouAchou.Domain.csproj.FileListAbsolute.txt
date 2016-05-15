@@ -1,0 +1,5 @@
+D:\ETEC\TCC\BuscouAchou\BuscouAchou.Domain\bin\Release\BuscouAchou.Domain.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchou.Domain\bin\Release\BuscouAchou.Domain.pdb
+D:\ETEC\TCC\BuscouAchou\BuscouAchou.Domain\obj\Release\BuscouAchou.Domain.csprojResolveAssemblyReference.cache
+D:\ETEC\TCC\BuscouAchou\BuscouAchou.Domain\obj\Release\BuscouAchou.Domain.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchou.Domain\obj\Release\BuscouAchou.Domain.pdb

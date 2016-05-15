@@ -40,9 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
+    <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BuscouAchou.Domain\BuscouAchou.Domain.csproj">
+      <Project>{d94fd0c2-10c4-4b84-873a-3d2f8d4c4ec6}</Project>
+      <Name>BuscouAchou.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BuscouAchouBaseRepository\BuscouAchouBaseRepository.csproj">
       <Project>{18956faa-ae54-4324-a7d0-af814b8da89a}</Project>
       <Name>BuscouAchouBaseRepository</Name>

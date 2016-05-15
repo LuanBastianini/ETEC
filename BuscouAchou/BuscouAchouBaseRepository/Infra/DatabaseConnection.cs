@@ -12,10 +12,10 @@ namespace BuscouAchouBaseRepository.Infra
     {
         public DatabaseConnection()
         {
-            SqlConnection = new SqlConnection(string.Format(@"data source=LUAN\SQLEXPRESS; Integrated Security=SSPI; Initial Catalog=NotaFiscal");
+            SqlConnection = new SqlConnection(string.Format(@"data source=LUAN\SQLEXPRESS; Integrated Security=SSPI; Initial Catalog=BuscouAchouReceitas"));
         }
 
-        public SqlConnection SqlConnection { get; private set; } 
+        public SqlConnection SqlConnection { get; set; } 
 
         public SqlTransaction SqlTransaction { get; set; }
 

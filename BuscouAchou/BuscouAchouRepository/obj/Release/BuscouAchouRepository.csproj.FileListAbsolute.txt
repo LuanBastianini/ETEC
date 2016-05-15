@@ -1,0 +1,9 @@
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\obj\Release\BuscouAchouRepository.csprojResolveAssemblyReference.cache
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\bin\Release\BuscouAchouRepository.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\bin\Release\BuscouAchouRepository.pdb
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\bin\Release\BuscouAchou.Domain.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\bin\Release\BuscouAchouBaseRepository.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\bin\Release\BuscouAchou.Domain.pdb
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\bin\Release\BuscouAchouBaseRepository.pdb
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\obj\Release\BuscouAchouRepository.dll
+D:\ETEC\TCC\BuscouAchou\BuscouAchouRepository\obj\Release\BuscouAchouRepository.pdb

@@ -9,7 +9,7 @@ namespace BuscouAchouBaseRepository.Infra
 {
     public interface IDatabaseConnection
     {
-        SqlConnection SqlConnection { get; private set; }
+        SqlConnection SqlConnection { get; set; }
         SqlTransaction SqlTransaction { get; set; }
         void OpenTransaction();
         void Commit();

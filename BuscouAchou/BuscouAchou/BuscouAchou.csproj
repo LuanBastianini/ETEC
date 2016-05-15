@@ -252,6 +252,14 @@
       <Project>{d94fd0c2-10c4-4b84-873a-3d2f8d4c4ec6}</Project>
       <Name>BuscouAchou.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BuscouAchouBaseRepository\BuscouAchouBaseRepository.csproj">
+      <Project>{18956faa-ae54-4324-a7d0-af814b8da89a}</Project>
+      <Name>BuscouAchouBaseRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BuscouAchouRepository\BuscouAchouRepository.csproj">
+      <Project>{b03fceee-84f9-424b-8cdd-dbfb94c79f81}</Project>
+      <Name>BuscouAchouRepository</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

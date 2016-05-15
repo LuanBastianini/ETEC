@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuscouAchou.Domain
 {
-    public class Receitas
+    public class ReceitaDataModel
     {
         public int Num_SeqlReceitas { get; set; }
         public int Num_SeqlUsua { get; set; }
