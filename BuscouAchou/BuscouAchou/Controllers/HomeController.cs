@@ -3,6 +3,7 @@ using BuscouAchou.Models;
 using BuscouAchouRepository;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -19,12 +20,30 @@ namespace BuscouAchou.Controllers
 
         public ActionResult Index()
         {
-            return View();
+
+            try
+            {
+                var usuarioLogado = Session["codUsua"];
+                if (usuarioLogado == null)
+                    return View("index");
+
+                return View("index", usuarioLogado);
+            } 
+            catch(Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
+
         }
 
         public ActionResult Cadastro()
         {
             return View("_Cadastro");
+        }
+
+        public ActionResult Login()
+        {
+            return View("_Login");
         }
 
         [HttpPost]
@@ -42,11 +61,11 @@ namespace BuscouAchou.Controllers
 
         }
 
-        public ActionResult VerificaUsuario(string Email) 
+        public ActionResult VerificaEmail(string Email) 
         {
             try
             {
-                var request = repository.VerificaUsuario(Email);
+                var request = repository.VerificaEmail(Email);
                 if(request == 1)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -59,6 +78,35 @@ namespace BuscouAchou.Controllers
         
         }
 
+        public ActionResult UsuarioLogado(string Email, string senha)
+        {
+            try
+            {
+                UnicodeEncoding encoding = new UnicodeEncoding();
+                byte[] hashBytes;
+                using (HashAlgorithm hash = SHA1.Create())
+                    hashBytes = hash.ComputeHash(encoding.GetBytes(senha));
+
+                StringBuilder hashValue = new StringBuilder(hashBytes.Length * 2);
+                foreach (byte b in hashBytes)
+                {
+                    hashValue.AppendFormat(CultureInfo.InvariantCulture, "{0:X2}", b);
+                }
+
+                var request = repository.UsuarioLogado(Email, hashValue.ToString());
+                if (request == 1)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                Session["codUsua"] = request.ToString();
+                return RedirectToAction("index");
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
+
+        }
+
         public ActionResult Receitas()
         {
 
@@ -68,7 +116,33 @@ namespace BuscouAchou.Controllers
 
         public ActionResult DadosUsua()
         {
-            return View("_DadosUsua");
+            try 
+            {
+                var codusua = Convert.ToInt32(Session["codUsua"]);
+                var response = new BAR_Usuario();
+                 response = repository.GetDadosUsuario(codusua);
+                return View("_DadosUsua",response);
+            }
+            catch(Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
+
+
+        }
+
+        public ActionResult PutDadosUsua(BAR_Usuario entitie) 
+        {
+            try
+            {
+                var codUsua = Convert.ToInt32(Session["codUsua"]);
+                repository.PutDadosUsuario(codUsua, entitie);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
         }
 
         public ActionResult CadReceitas()
@@ -96,6 +170,12 @@ namespace BuscouAchou.Controllers
         public ActionResult AlterarReceita()
         {
             return View("_AltReceita");
+        }
+
+        public ActionResult Sair() 
+        {
+            Session["codUsua"] = "";
+            return RedirectToAction("index");
         }
    }
 }

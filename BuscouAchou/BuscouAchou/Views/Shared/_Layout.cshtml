@@ -13,7 +13,7 @@
     <link rel="icon" href="~/Content/img/BuscouAchou.png" />
 </head>
 <body>
-    <nav class="navbar navbar-inverse" style=" background-color: rgba(255, 152, 0, 0.55);">
+    <nav class="navbar navbar-inverse" style=" background-color: rgba(255, 152, 0, 0.55); border:none; border-radius:0">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -24,26 +24,19 @@
                 </button>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <form id="formnav" class="navbar-form navbar-right" style="margin-right:0;">
-                    <div class="form-group">
-                        <input id="emailLog" type="text" placeholder="Email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input id="senhaLog" type="password" placeholder="Password" class="form-control">
-                    </div>
-                    <button disabled="" id="btnent" type="button" class="btn btn-danger">Entrar</button>
-                    <button id="btncad" type="button" class="btn btn-success">Cadastrar</button>
-                </form>
-                <div id="btnSnav" class="navbar-right" style="margin:8px 0; display:none">
-                    <button id="meusdados" type="button" class="btn btn-primary">Meus Dados</button>
-                    <button id="btncadrec" type="button" class="btn btn-primary">Cadastrar Receitas</button>
-                    <button id="btnMrec" type="button" class="btn btn-primary">Minhas Receitas</button>
+                <div style="padding-top:8px; float: right;" id="formnav">
+                    <button id="btnent" type="button" class="btn btn-warning">Entrar</button>
+                    <button id="btncad" type="button" class="btn btn-warning">Cadastrar</button>
+                </div>
+                <div id="btnSnav" class="navbar-right" style="margin:8px 0; display:none;">
+                    <button id="btnMeusdados" type="button" class="btn btn-danger">Meus Dados</button>
+                    <button id="btncadrec" type="button" class="btn btn-danger">Cadastrar Receitas</button>
+                    <button id="btnMrec" type="button" class="btn btn-danger">Minhas Receitas</button>
+                    <button id="btnsair" type="button" class="btn btn-danger">Sair</button>
                 </div>
             </div>
         </div>
     </nav>
     @RenderBody()
 </body>
-
-
 </html>

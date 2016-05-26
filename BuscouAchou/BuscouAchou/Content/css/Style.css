@@ -47,3 +47,17 @@ margin-top:10px;
     border: 1px solid rgba(0, 0, 0, 0.21);
     margin-top: 10px;
 }
+
+.erro {
+    border-color: #E80B0B;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(232,11,11,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(232,11,11,.6);
+    }
+
+.ok {
+    border-color: #37E210;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(55,226,16,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(55,226,16,.6);
+    }

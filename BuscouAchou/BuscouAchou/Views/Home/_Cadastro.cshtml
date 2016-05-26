@@ -5,19 +5,6 @@
     .inpcad{
         margin-bottom:10px;
     }
-    .erro {
-    border-color: #E80B0B;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(232,11,11,.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(232,11,11,.6);
-    }
-
-    .ok {
-    border-color: #37E210;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(55,226,16,.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(55,226,16,.6);
-    }
 </style>
 <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -28,7 +15,7 @@
             <h3>CADASTRE-SE</h3>
         </div>
         <div class="row">
-            <div class="col-lg-6" style="border-right:2px solid black; margin:20px 0;">
+            <div class="col-md-6" style="border-right:2px solid black; margin:20px 0;">
                 <div class="modal-body">
                     <form>
                         <div>
@@ -49,7 +36,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-6" style="margin:20px 0">
+            <div class="col-md-6" style="margin:20px 0">
                 <p style="text-align:center; font-size:10px;">Cadastre-se gratuitamente para participar do nosso repositório de receitas compartilhadas.</p>
                 <p style="text-align:center;margin-top:20px;"><i class="glyphicon glyphicon-book"></i> Salve suas receitas.</p>
                 <p style="text-align:center;margin-top:20px;"><i class="glyphicon glyphicon-share"></i> Compartilhe suas receitas.</p>
@@ -69,10 +56,7 @@
         }).success(function () {
             $('#txtMsgWarning').slideUp();
             $('#txtMsgSuccess').text("USUARIO CADASTRADO COM SUCESSO").slideDown();
-            $("#nomeUsua").val("");
-            $("#email").val("");
-            $("#numSenha").val("");
-            $("#numConfSenha").val("");
+            limpaTudo()
         }).error(function () {
             $('#txtMsgWarning').text("ERRO AO INSERIR USUARIO").slideDown();
         });
@@ -100,7 +84,7 @@
             return false;
         }
 
-        $.get("@Url.Action("VerificaUsuario", "Home")",{
+        $.get("@Url.Action("VerificaEmail", "Home")",{
             Email: $("#email").val()
         }).success(function () {
             if (validateEmail($('#email').val())) {
@@ -162,9 +146,11 @@
             $('#btnFinalizaCad').prop("disabled", false);
     }
 
-    function validateEmail(email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@@']+(\.[^<>()\[\]\\.,;:\s@@']+)*)|('.+'))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
+    function limpaTudo() {
+        $("#nomeUsua").val("").removeClass('ok');
+        $("#email").val("").removeClass('ok');
+        $("#numSenha").val("").removeClass('ok');
+        $("#numConfSenha").val("").removeClass('ok');
     }
 </script>
 

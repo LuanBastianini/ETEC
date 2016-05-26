@@ -1,8 +1,8 @@
---DROP PROCEDURE BARSP_VerificaUsuario 
-	CREATE PROCEDURE BARSP_VerificaUsuario 
+--DROP PROCEDURE BARSP_VerificaEmail 
+	CREATE PROCEDURE BARSP_VerificaEmail 
 		@Email				varchar(150)
 	AS
-			-- Nome: BARSP_VerificaUsuario
+			-- Nome: BARSP_VerificaEmail
 			-- Data Criação: 07/05/2016
 			-- Autor: Luan felipe
 			-- Exemplo: EXEC BARSP_VerificaUsuario
@@ -14,7 +14,6 @@
 			BEGIN
 				RETURN 1
 			END
-		ELSE
 
 		RETURN 0
 	END

@@ -9,7 +9,7 @@
             <h3 style="border-left:5px solid orange">Enviar Receitas</h3>
         <div class="col-md-10">
             <div class="headcadrec">
-                <p style="text-align:center; color:white;">É muito fácil enviar sua receita, basta preencher o formulario corretamente, no final analizar se as quantidades estão corretas.</p>
+                <p style="text-align:center; color:white;">É muito fácil enviar sua receita, primeiro preencha os dados da receita, depois informe os ingredientes e o modo de preparo.</p>
             </div>
         </div>
         </div>
@@ -22,31 +22,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div>
-                                        <input class="form-control mtop " type="text" placeholder="Nome da Receita" style="width:90%">
+                                        <input id="txtNomeReceita" class="form-control mtop " type="text" placeholder="Nome da Receita" style="width:90%">
                                     </div>
                                     <div id="inputbusca" class="mtop" style="width:90%;">
                                         <label>Escolha a imagem:</label>
-                                        <input name="File" type="file" placeholder="Foto da receita">
+                                        <input name="File" type="file" id="txtFileFoto">
                                     </div>
                                     <div class="col-md-6" style="padding:10px 0 0 0;"><label>Liberar Compartilhamento: </label></div>
                                     <div class="col-md-6" style="padding:0">
                                         <div class="radio" style="display:inline-block;">
-                                            <label><input type="radio" name="optradio">Sim</label>
+                                            <label><input id="rdSim" value="S" checked="" type="radio" name="optradio">Sim</label>
                                         </div>
                                         <div class="radio" style="display:inline-block;">
-                                            <label><input type="radio" name="optradio">Não</label>
+                                            <label><input id="rdNao" value="N" type="radio" name="optradio">Não</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-12">
                                         <div class="col-md-4" style="padding:0"><label>Tempo de Preparo / Minutos: </label></div>
-                                        <div class="col-md-2" style="padding:0"><input class="form-control " type="text" style="width:50px"></div>
+                                        <div class="col-md-2" style="padding:0"><input id="txtTempoPreparo" class="form-control " type="text" style="width:50px"></div>
                                         <div class="col-md-2" style="padding:0"><i style="font-size: 38px;" class="glyphicon glyphicon-hourglass"></i></div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="col-md-4" style="padding:0"><label>Rendimentos / Porção: </label></div>
-                                        <div class="col-md-2" style="padding:0"><input class="form-control " type="text" style="width:50px"></div>
+                                        <div class="col-md-2" style="padding:0"><input id="txtRendPorc" class="form-control " type="text" style="width:50px"></div>
                                         <div class="col-md-2" style="padding:0"><i style="font-size: 38px;" class="glyphicon glyphicon-cutlery"></i></div>
                                     </div>
     
@@ -55,7 +55,7 @@
                                     <h4 style="border-left:5px solid orange"></h4>
                                 </div>
                             </div>
-                            <div class="col-md-12" style="padding:20px 0; border-top: 1px solid rgba(16, 15, 15, 0.2);">
+                            <div id="ingModPrep" class="col-md-12" style="padding:20px 0; border-top: 1px solid rgba(16, 15, 15, 0.2); display:none;">
                                 <div class="col-md-6">
                                     <div>
                                         <h4 style="border-left:5px solid orange">Ingredientes</h4>
@@ -63,8 +63,8 @@
                                     <div>
                                         <p>Não use caracter especiais ou numeração</p>
                                     </div>
-                                    <div id="inputbusca" class="input-group mtop" style="width:100%;">
-                                        <input class="form-control " type="text" placeholder="Adicione Ingrediente">
+                                    <div class="input-group mtop" style="width:100%;">
+                                        <input id="txtIngrediente" class="form-control " type="text" placeholder="Adicione Ingrediente">
                                         <span class="input-group-btn"><button style="outline:none;" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" style="color:white;"></i></button></span>
                                     </div>
                                     <div class="msgcadrec">
@@ -85,7 +85,7 @@
                                         <p>Escreva um modo por vez, pois sera listado em ordem numerica</p>
                                     </div>
                                     <div class="input-group mtop" style="width:100%;">
-                                        <input class="form-control " type="text" placeholder="Adicionar modo de preparo">
+                                        <input id="txtModPreparo" class="form-control " type="text" placeholder="Adicionar modo de preparo">
                                         <span class="input-group-btn"><button style="outline:none;" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" style="color:white;"></i></button></span>
                                     </div>
                                     <div class="msgcadrec">
@@ -100,11 +100,21 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-warning btn blockCenter">Salvar</button>
+                                <button id="btnSalvaDadosRec" type="submit" class="btn btn-warning btn blockCenter">Salvar</button>
+                                <button id="btnSalvaRec" type="button" class="btn btn-warning btn blockCenter" style="display:none;">Salvar</button>
                             </div>
                             }
                     </div>
             </div>
         </div>
     </div>
+
+<script>
+    $('#btnSalvaDadosRec').click(function () {
+        $('#ingModPrep').slideDown();
+        $('#btnSalvaDadosRec').css("display", "none");
+        $('#btnSalvaRec').css("display", "block");
+    });
+
+</script>
 

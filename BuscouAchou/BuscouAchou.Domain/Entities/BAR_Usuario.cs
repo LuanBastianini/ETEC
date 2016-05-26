@@ -17,19 +17,24 @@ namespace BuscouAchou.Domain.Entities
 
         public StringBuilder SenhaCriptog 
         { 
-            get { 
-                        UnicodeEncoding encoding = new UnicodeEncoding();
-                        byte[] hashBytes;
-                        using (HashAlgorithm hash = SHA1.Create())
-                            hashBytes = hash.ComputeHash(encoding.GetBytes(Num_Senha));
+            get {
+                if (Num_Senha != null)
+                {
+                    UnicodeEncoding encoding = new UnicodeEncoding();
+                    byte[] hashBytes;
+                    using (HashAlgorithm hash = SHA1.Create())
+                        hashBytes = hash.ComputeHash(encoding.GetBytes(Num_Senha));
 
-                        StringBuilder hashValue = new StringBuilder(hashBytes.Length * 2);
-                        foreach (byte b in hashBytes)
-                        {
-                            hashValue.AppendFormat(CultureInfo.InvariantCulture, "{0:X2}", b);
-                        }
-                        return hashValue;
-                } 
+                    StringBuilder hashValue = new StringBuilder(hashBytes.Length * 2);
+                    foreach (byte b in hashBytes)
+                    {
+                        hashValue.AppendFormat(CultureInfo.InvariantCulture, "{0:X2}", b);
+                    }
+                    return hashValue;
+                }
+
+                return null;
+            } 
         }
     }
 }

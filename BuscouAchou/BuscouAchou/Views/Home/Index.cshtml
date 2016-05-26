@@ -1,13 +1,15 @@
-﻿@{
+﻿@model string
+@{
     ViewBag.Title = "BUSCAR - BuscouAchouReceitas";
 }
 
 <div class="container">
+    <input type="hidden" id="codUsua" value="@Model"/>
     <div id="contlogo" class="jumbotron" style="background-color:white; padding-top:100px;">
         <a href="@Url.Action("Index","Home")"><img id="imglogo" title="Encontre sua receita." class="blockCenter img-responsive" alt="Responsive image" src="~/Content/img/BAReceitas.jpg" style="padding-bottom:10px; width:50%" /></a>
         <br />
         <div id="inputbusca" class="input-group" style="width:70%; margin:0 auto">
-            <input type="text" autofocus class=" form-control pull-left" placeholder="Encontre sua receita..." />
+            <input id="inpbusc" type="text" autofocus class=" form-control pull-left" placeholder="Encontre sua receita..." />
             <span class="input-group-btn"><button style="outline:none;" id="buscaReceitas" type="button" class="btn btn-warning">Buscar</button></span>
         </div>  
         </div>
@@ -19,93 +21,128 @@
 <div id="modalcadrec" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
 <div id="modalMinhasRec" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
 <div id="modalAltRec" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
+<div id="modalLogin" class="modal fade" tabindex="-1" role="dialog" style="width:100%"></div>
 
-    <script type="text/javascript">
 
-        $('#btncad').click(function () {
-            $.get("@Url.Action("Cadastro", "Home")").success(function (data) {
-                $('#modalcad').html(data);
-                $('#modalcad').modal('show');
-            }).error(function () {
-                console.log("ERRO");
-            });
+<script type="text/javascript">
+    if ($('#codUsua').val()) {
+        $('#formnav').hide();
+        $('#btnSnav').show();
+    } else
+    {
+        $('#formnav').show();
+        $('#btnSnav').hide();
+    }
+
+    $('#btncad').click(function () {
+        $.get("@Url.Action("Cadastro", "Home")").success(function (data) {
+            $('#modalcad').html(data);
+            $('#modalcad').modal('show');
+        }).error(function () {
+            console.log("ERRO");
         });
+    });
 
-        $('#btnent').click(function () {
-            if (!$("#emailLog").val()) {
+    $('#btnent').click(function () {
+        $.get("@Url.Action("Login", "Home")").success(function (data) {
+            $('#modalLogin').html(data);
+            $('#modalLogin').modal('show');
+        }).error(function () {
+            console.log("ERRO");
+        });
+    });
+
+    @*$('#btnent').click(function () {
+        if (!$("#emailLog").val()) {
+            $('#emailLog').removeClass("ok");
+            $('#emailLog').addClass("erro");
+            return false;
+        }
+
+        if (!$("#senhaLog").val()) {
+            $('#senhaLog').removeClass("ok");
+            $('#senhaLog').addClass("erro");
+            return false;
+        }
+
+        $.get("@Url.Action("VerificaEmail", "Home")",{
+            Email: $("#emailLog").val()
+        }).success(function () {
+            if (validateEmail($('#emailLog').val())) {
+                $('#emailLog').removeClass("erro");
+                $('#emailLog').addClass("ok");
+            } else {
                 $('#emailLog').removeClass("ok");
                 $('#emailLog').addClass("erro");
-                return false;
+                $('#btncad').prop("disabled", true);
             }
-
-            if (!$("#senhaLog").val()) {
-                $('#senhaLog').removeClass("ok");
-                $('#senhaLog').addClass("erro");
-                return false;
-            }
-
-            $.get("@Url.Action("VerificaUsuario", "Home")",{
-                Email: $("#emailLog").val()
-            }).success(function () {
-                if (validateEmail($('#emailLog').val())) {
-                    $('#formnav').hide();
-                    $('#btnSnav').show();
-                } else {
-                    $('#emailLog').removeClass("ok");
-                    $('#emailLog').addClass("erro");
-                    $('#btncad').prop("disabled", true);
-                }
-            }).error(function () {
-                $('#emailLog').removeClass("ok");
-                $('#emailLog').addClass("erro");
-            });
+        }).error(function () {
+            $('#emailLog').removeClass("ok");
+            $('#emailLog').addClass("erro");
         });
+    });*@
 
-        $('#meusdados').click(function () {
-            $.get("@Url.Action("DadosUsua", "Home")").success(function (data) {
-                $('#modalalt').html(data);
-                $('#modalalt').modal('show');
-            }).error(function () {
-                console.log("ERRO");
-            });
+    $('#btnMeusdados').click(function () {
+        $.get("@Url.Action("DadosUsua", "Home")").success(function (data) {
+            $('#modalalt').html(data);
+            $('#modalalt').modal('show');
+        }).error(function () {
+            console.log("ERRO");
         });
-        $('#btncadrec').click(function () {
-            $.get("@Url.Action("CadReceitas", "Home")").success(function (data) {
-                $('#modalcadrec').html(data);
-                $('#modalcadrec').modal('show');
-            }).error(function () {
-                console.log("ERRO");
-            });
+    });
+    $('#btncadrec').click(function () {
+        $.get("@Url.Action("CadReceitas", "Home")").success(function (data) {
+            $('#modalcadrec').html(data);
+            $('#modalcadrec').modal('show');
+        }).error(function () {
+            console.log("ERRO");
         });
+    });
 
-        $('#btnMrec').click(function () {
-            $.get("@Url.Action("MinhasReceitas", "Home")").success(function (data) {
-                $('#modalMinhasRec').html(data);
-                $('#modalMinhasRec').modal('show');
-            }).error(function () {
-                console.log("ERRO");
-            });
+    $('#btnMrec').click(function () {
+        $.get("@Url.Action("MinhasReceitas", "Home")").success(function (data) {
+            $('#modalMinhasRec').html(data);
+            $('#modalMinhasRec').modal('show');
+        }).error(function () {
+            console.log("ERRO");
         });
+    });
 
-        $(Document).on('click', '#altReceita', function () {
-            $.get("@Url.Action("AlterarReceita", "Home")").success(function (data) {
-                $('#modalAltRec').html(data);
-                $('#modalAltRec').modal('show');
-            }).error(function () {
-                console.log("ERRO");
-            });
+    $(Document).on('click', '#altReceita', function () {
+        $.get("@Url.Action("AlterarReceita", "Home")").success(function (data) {
+            $('#modalAltRec').html(data);
+            $('#modalAltRec').modal('show');
+        }).error(function () {
+            console.log("ERRO");
         });
+    });
 
-        $('#buscaReceitas').click(function () {
-            $.get("@Url.Action("Receitas", "Home")").success(function (data) {
-                $('#imglogo').css("width", "25%");
-                $('#inputbusca').addClass('centerinput');
-                $('#contlogo').css("padding", "0");
-                $('#receitasBuscadas').html(data).show();
-            }).error(function () {
-                console.log("ERRO");
-            });
+    $('#buscaReceitas').click(function () {
+        $.get("@Url.Action("Receitas", "Home")").success(function (data) {
+            $('#imglogo').css("width", "25%");
+            $('#inputbusca').addClass('centerinput').focus();
+            $('#contlogo').css("padding", "0");
+            $('#receitasBuscadas').html(data).show();
+            $('#inpbusc').focus();
+        }).error(function () {
+            console.log("ERRO");
         });
+    });
+
+    $('#btnsair').click(function () {
+        $.get("@Url.Action("Sair", "Home")").success(function () {
+            $('#formnav').show();
+            $('#btnSnav').hide();
+        }).error(function () {
+            console.log("ERRO");
+        });
+    });
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@@']+(\.[^<>()\[\]\\.,;:\s@@']+)*)|('.+'))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+
+        }
     </script>
 
 

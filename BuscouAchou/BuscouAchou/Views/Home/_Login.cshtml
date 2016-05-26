@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    .inpcad {
+        margin-bottom: 10px;
+    }
+
+    .erro {
+        border-color: #E80B0B;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(232,11,11,.6);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(232,11,11,.6);
+    }
+
+    .ok {
+        border-color: #37E210;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(55,226,16,.6);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(55,226,16,.6);
+    }
+</style>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <p id="txtMsgSuccess" style="display:none" class="bg-success"></p>
+            <p id="txtMsgWarning" style="display:none" class="bg-warning"></p>
+            <h3>LOGIN</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="border-right:2px solid black; margin:20px 0;">
+                <div class="modal-body">
+                    <form>
+                        <div>
+                            <input id="emailLog" name="Email" class="form-control inpcad" autofocus type="text" placeholder="E-mail">
+                        </div>
+                        <div>
+                            <input id="numSenhaLog" name="Num_Senha" class="form-control inpcad" autofocus type="password" placeholder="Senha">
+                        </div>
+                        <div>
+                            <label class="btn btn-link" id="esqSenha">Esqueci minha senha</label>
+                        </div>
+                        <div>
+                            <button style="margin-left:85px" disabled="" id="btnlogin" type="button" class="btn btn-warning btn">Logar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6" style="margin:20px 0">
+                <p style="text-align:center;margin-top:20px;"><i class="glyphicon glyphicon-book"></i> Salve suas receitas.</p>
+                <p style="text-align:center;margin-top:20px;"><i class="glyphicon glyphicon-share"></i> Compartilhe suas receitas.</p>
+                <p style="text-align:center;margin-top:20px;"><i class="glyphicon glyphicon-search"></i> Busque receitas compartilhadas.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#emailLog').blur(function () {
+        if (!$("#emailLog").val()) {
+            $('#emailLog').removeClass("ok");
+            $('#emailLog').addClass("erro");
+            $('#btnlogin').prop("disabled", true);
+            return false;
+        }
+
+        $.get("@Url.Action("VerificaEmail", "Home")", {
+            Email: $("#emailLog").val()
+        }).success(function () {
+            $('#txtMsgWarning').text("EMAIL NÃO CADASTRADO").slideDown();
+            $('#emailLog').removeClass("ok");
+            $('#emailLog').addClass("erro");
+            $('#btnlogin').prop("disabled", true);
+        }).error(function () {
+            if (validateEmail($('#emailLog').val())) {
+                $('#emailLog').removeClass("erro");
+                $('#emailLog').addClass("ok");
+                $('#txtMsgWarning').slideUp();
+            } else {
+                $('#emailLog').removeClass("ok");
+                $('#emailLog').addClass("erro");
+                $('#txtMsgWarning').text("EMAIL INVALIDO").slideDown();
+            }
+        });
+
+        habilitaBtnLogin()
+    });
+
+    $('#numSenhaLog').blur(function () {
+        if (!$("#numSenhaLog").val()) {
+            $('#numSenhaLog').removeClass("ok");
+            $('#numSenhaLog').addClass("erro");
+            $('#btnlogin').prop("disabled", true);
+            return false;
+        } else {
+            $('#numSenhaLog').removeClass("erro");
+            $('#numSenhaLog').addClass("ok");
+        }
+
+        habilitaBtnLogin()
+    });
+
+    $('#btnlogin').click(function () {
+        $.post("@Url.Action("UsuarioLogado", "Home")",{
+            Email: $("#emailLog").val(),
+            senha: $("#numSenhaLog").val()
+        }).success(function () {
+            $('#modalLogin').modal('hide');
+            $('#formnav').hide();
+            $('#btnSnav').show();
+            $("#emailLog").val(''),
+            $("#numSenhaLog").val('')
+        }).error(function () {
+            $('#txtMsgWarning').text("E-MAIL OU SENHA INCORRETA.").slideDown();
+        });
+    });
+
+    function habilitaBtnLogin() {
+        if ($('#emailLog').hasClass('ok') && $('#numSenhaLog').hasClass('ok'))
+            $('#btnlogin').prop("disabled", false);
+    }
+</script>
