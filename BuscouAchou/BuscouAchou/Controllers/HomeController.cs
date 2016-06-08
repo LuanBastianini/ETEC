@@ -109,7 +109,6 @@ namespace BuscouAchou.Controllers
 
         public ActionResult Receitas()
         {
-
             ViewBag.filename = "teste2.jpg";
             return View("_Receitas");
         }
