@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 style="border-left:5px solid orange">Escolha uma Imagem</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="margin:20px 0;">
+                <div class="modal-body">
+                    @using(Html.BeginForm("PostImagem", "Home", null ,FormMethod.Post, new {enctype = "multipart/form-data"}))
+                    {
+                    <div id="inputbusca" class="mtop" style="width:90%;">
+                        <label>Escolha a imagem:</label>
+                        <input name="arquivo" type="file" id="file">
+                    </div>
+                    <button id="SalvaImagem" type="submit" class="btn btn-warning btn blockCenter">Salvar</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

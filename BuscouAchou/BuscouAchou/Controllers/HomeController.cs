@@ -1,4 +1,5 @@
-﻿using BuscouAchou.Domain.Entities;
+﻿using BuscouAchou.Domain;
+using BuscouAchou.Domain.Entities;
 using BuscouAchou.Models;
 using BuscouAchouRepository;
 using System;
@@ -134,8 +135,8 @@ namespace BuscouAchou.Controllers
         {
             try
             {
-                var codUsua = Convert.ToInt32(Session["codUsua"]);
-                repository.PutDadosUsuario(codUsua, entitie);
+                entitie.Num_SeqlUsuario = Convert.ToInt32(Session["codUsua"]);
+                repository.PutDadosUsuario(entitie);
                 return null;
             }
             catch (Exception ex)
@@ -150,15 +151,21 @@ namespace BuscouAchou.Controllers
         }
 
         [HttpPost]
-        public ActionResult CadReceitas(ImagensModel imagem)
+        public ActionResult CadReceitas(ReceitaDataModel entitie)
         {
-            if (imagem.file.ContentLength > 0) 
+            try
             {
-                var filename = "teste2";
-                var path = Path.Combine(Server.MapPath("~/Content/ImagemReceitas"), filename+".jpg");
-                imagem.file.SaveAs(path);
+                entitie.Num_SeqlUsua = Convert.ToInt32(Session["codUsua"]);
+                Session["numReceita"] = repository.PostReceitas(entitie);
+                
+                return null;
+
             }
-            return RedirectToAction("Index");
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
+
         }
 
         public ActionResult MinhasReceitas() 
@@ -175,6 +182,64 @@ namespace BuscouAchou.Controllers
         {
             Session["codUsua"] = "";
             return RedirectToAction("index");
+        }
+
+        public ActionResult UploadImagem()
+        {
+            return View("_ImagemReceita");
+        }
+
+        [HttpPost]
+        public ActionResult PostImagem(ImagensModel imagem) 
+        {
+            if (imagem.arquivo.ContentLength > 0)
+            {
+                var filename = Session["numReceita"].ToString();
+                var path = Path.Combine(Server.MapPath("~/Content/ImagemReceitas"), filename + ".jpg");
+                imagem.arquivo.SaveAs(path);
+            }
+            Session["numReceita"] = null;
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult PostIngredientes(string nomIngrediente) 
+        {
+            try
+            {
+                var numReceita = (int)Session["numReceita"];
+                var ingredientes = nomIngrediente.Split('/');
+                foreach (var item in ingredientes)
+                {
+                    repository.PostIngredientes(numReceita, item);
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PostModoPreparo(string nomModoPreparo)
+        {
+            try
+            {
+                var numReceita = (int)Session["numReceita"];
+                var modoPreparo = nomModoPreparo.Split('/');
+                foreach (var item in modoPreparo)
+                {
+                    repository.PostModoPreparo(numReceita, item);
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
         }
    }
 }

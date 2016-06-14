@@ -7,6 +7,6 @@ namespace BuscouAchou.Models
 {
     public class ImagensModel
     {
-        public HttpPostedFileBase file { get; set; }
+        public HttpPostedFileBase arquivo { get; set; }
     }
 }

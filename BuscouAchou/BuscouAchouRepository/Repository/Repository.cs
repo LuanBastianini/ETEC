@@ -1,4 +1,5 @@
-﻿using BuscouAchou.Domain.Entities;
+﻿using BuscouAchou.Domain;
+using BuscouAchou.Domain.Entities;
 using BuscouAchou.Infra.Data;
 using BuscouAchouBaseRepository.Infra;
 using System;
@@ -40,7 +41,10 @@ namespace BuscouAchouRepository
             BARSP_UsuarioLogado,
             BARSP_VerificaSenha,
             BARSP_SelDadosUsuario,
-            BARSP_UpdDadosUsuario
+            BARSP_UpdDadosUsuario,
+            BARSP_InsReceitas,
+            BARSP_InsIngrediente,
+            BARSP_InsModoPreparo
         }
 
         public void Post(BAR_Usuario entitie) 
@@ -86,14 +90,46 @@ namespace BuscouAchouRepository
                 return listUsua;
             }
         }
-        public void PutDadosUsuario(int codUsua, BAR_Usuario entitie ) 
+
+        public void PutDadosUsuario(BAR_Usuario entitie ) 
         {
             ExecuteProcedure(procidures.BARSP_UpdDadosUsuario);
 
-            AddParameter("@Num_SeqlUsuario", codUsua);
+            AddParameter("@Num_SeqlUsuario", entitie.Num_SeqlUsuario);
             AddParameter("@Nom_Usua", entitie.Nom_Usua);
             AddParameter("@Email", entitie.Email);
-            AddParameter("@Num_SenhaCrip", entitie.SenhaCriptog.ToString());
+            AddParameter("@Num_SenhaCrip", entitie.SenhaCriptog);
+            ExecuteNonQuery();
+        }
+
+        public int PostReceitas(ReceitaDataModel entitie) 
+        {
+            ExecuteProcedure(procidures.BARSP_InsReceitas);
+
+            AddParameter("@Num_SeqlUsua", entitie.Num_SeqlUsua);
+            AddParameter("@Nom_Receita", entitie.Nom_Receita);
+            AddParameter("@Ind_LibComp", entitie.Ind_LibComp);
+            AddParameter("@Temp_Prep",entitie.Temp_Prep);
+            AddParameter("@Rend_Porc",entitie.Rend_Porc);
+            return ExecuteNonQueryWithReturn<int>();
+
+        }
+
+        public void PostIngredientes(int numReceita, string nomIngrediente) 
+        {
+            ExecuteProcedure(procidures.BARSP_InsIngrediente);
+
+            AddParameter("@Num_SeqlReceitas", numReceita);
+            AddParameter("@Nom_Ingrediente", nomIngrediente);
+            ExecuteNonQuery();
+        }
+
+        public void PostModoPreparo(int numReceita, string nomModoPreparo)
+        {
+            ExecuteProcedure(procidures.BARSP_InsModoPreparo);
+
+            AddParameter("@Num_SeqlReceitas", numReceita);
+            AddParameter("@Modo_Preparo", nomModoPreparo);
             ExecuteNonQuery();
         }
     }

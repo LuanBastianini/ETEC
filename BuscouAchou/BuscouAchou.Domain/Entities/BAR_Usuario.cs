@@ -15,7 +15,7 @@ namespace BuscouAchou.Domain.Entities
         public string Email { get; set; }
         public string Num_Senha { get; set; }
 
-        public StringBuilder SenhaCriptog 
+        public string SenhaCriptog 
         { 
             get {
                 if (Num_Senha != null)
@@ -30,7 +30,7 @@ namespace BuscouAchou.Domain.Entities
                     {
                         hashValue.AppendFormat(CultureInfo.InvariantCulture, "{0:X2}", b);
                     }
-                    return hashValue;
+                    return hashValue.ToString();
                 }
 
                 return null;

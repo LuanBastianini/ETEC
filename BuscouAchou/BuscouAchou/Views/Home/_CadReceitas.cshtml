@@ -6,6 +6,8 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <p id="txtMsgSuccessAlt" style="display:none" class="bg-success"></p>
+            <p id="txtMsgWarningAlt" style="display:none" class="bg-warning"></p>
             <h3 style="border-left:5px solid orange">Enviar Receitas</h3>
         <div class="col-md-10">
             <div class="headcadrec">
@@ -15,106 +17,143 @@
         </div>
         <div class="row">
                 <div class="modal-body" style="padding-bottom:30px;">
-                    @using (Html.BeginForm("CadReceitas", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })) { 
-                            <div class="col-md-12">
+                    <form>
+                        <div class="col-md-12">
+                            <div>
+                                <h4 style="border-left:5px solid orange">Nome e informações</h4>
+                            </div>
+                            <div class="col-md-6">
                                 <div>
-                                    <h4 style="border-left:5px solid orange">Nome e informações</h4>
+                                    <input name="Nom_Receita" id="txtNomeReceita" class="form-control mtop " type="text" placeholder="Nome da Receita" style="width:90%">
                                 </div>
-                                <div class="col-md-6">
-                                    <div>
-                                        <input id="txtNomeReceita" class="form-control mtop " type="text" placeholder="Nome da Receita" style="width:90%">
+                                <div class="col-md-6" style="padding:10px 0 0 0;"><label>Liberar Compartilhamento: </label></div>
+                                <div class="col-md-6" style="padding:0">
+                                    <div class="radio" style="display:inline-block;">
+                                        <label><input id="rdSim" value="S" checked="" type="radio" name="optradio">Sim</label>
                                     </div>
-                                    <div id="inputbusca" class="mtop" style="width:90%;">
-                                        <label>Escolha a imagem:</label>
-                                        <input name="File" type="file" id="txtFileFoto">
+                                    <div class="radio" style="display:inline-block;">
+                                        <label><input id="rdNao" value="N" type="radio" name="optradio">Não</label>
                                     </div>
-                                    <div class="col-md-6" style="padding:10px 0 0 0;"><label>Liberar Compartilhamento: </label></div>
-                                    <div class="col-md-6" style="padding:0">
-                                        <div class="radio" style="display:inline-block;">
-                                            <label><input id="rdSim" value="S" checked="" type="radio" name="optradio">Sim</label>
-                                        </div>
-                                        <div class="radio" style="display:inline-block;">
-                                            <label><input id="rdNao" value="N" type="radio" name="optradio">Não</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-12">
-                                        <div class="col-md-4" style="padding:0"><label>Tempo de Preparo / Minutos: </label></div>
-                                        <div class="col-md-2" style="padding:0"><input id="txtTempoPreparo" class="form-control " type="text" style="width:50px"></div>
-                                        <div class="col-md-2" style="padding:0"><i style="font-size: 38px;" class="glyphicon glyphicon-hourglass"></i></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="col-md-4" style="padding:0"><label>Rendimentos / Porção: </label></div>
-                                        <div class="col-md-2" style="padding:0"><input id="txtRendPorc" class="form-control " type="text" style="width:50px"></div>
-                                        <div class="col-md-2" style="padding:0"><i style="font-size: 38px;" class="glyphicon glyphicon-cutlery"></i></div>
-                                    </div>
-    
-                                </div>
-                                <div>
-                                    <h4 style="border-left:5px solid orange"></h4>
                                 </div>
                             </div>
-                            <div id="ingModPrep" class="col-md-12" style="padding:20px 0; border-top: 1px solid rgba(16, 15, 15, 0.2); display:none;">
-                                <div class="col-md-6">
-                                    <div>
-                                        <h4 style="border-left:5px solid orange">Ingredientes</h4>
-                                    </div>
-                                    <div>
-                                        <p>Não use caracter especiais ou numeração</p>
-                                    </div>
-                                    <div class="input-group mtop" style="width:100%;">
-                                        <input id="txtIngrediente" class="form-control " type="text" placeholder="Adicione Ingrediente">
-                                        <span class="input-group-btn"><button style="outline:none;" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" style="color:white;"></i></button></span>
-                                    </div>
-                                    <div class="msgcadrec">
-                                        <ul>
-                                            <li>Ingrediente</li>
-                                            <li>Ingrediente</li>
-                                            <li>Ingrediente</li>
-                                            <li>Ingrediente</li>
-                                            <li>Ingrediente</li>
-                                        </ul>
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <div class="col-md-4" style="padding:0"><label>Tempo de Preparo / Minutos: </label></div>
+                                    <div class="col-md-2" style="padding:0"><input name="Temp_Prep" id="txtTempoPreparo" class="form-control " type="text" style="width:50px" maxlength="3"></div>
+                                    <div class="col-md-2" style="padding:0"><i style="font-size: 38px;" class="glyphicon glyphicon-hourglass"></i></div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div>
-                                        <h4 style="border-left:5px solid orange">Modo de preparo</h4>
-                                    </div>
-                                    <div>
-                                        <p>Escreva um modo por vez, pois sera listado em ordem numerica</p>
-                                    </div>
-                                    <div class="input-group mtop" style="width:100%;">
-                                        <input id="txtModPreparo" class="form-control " type="text" placeholder="Adicionar modo de preparo">
-                                        <span class="input-group-btn"><button style="outline:none;" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" style="color:white;"></i></button></span>
-                                    </div>
-                                    <div class="msgcadrec">
-                                        <ul>
-                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
-                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
-                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
-                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
-                                            <li>IngredienteIngredienteIngredienteIngrediente</li>
-                                        </ul>
-                                    </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-4" style="padding:0"><label>Rendimentos / Porção: </label></div>
+                                    <div class="col-md-2" style="padding:0"><input name="Rend_Porc" id="txtRendPorc" class="form-control " type="text" style="width:50px" maxlength="3"></div>
+                                    <div class="col-md-2" style="padding:0"><i style="font-size: 38px;" class="glyphicon glyphicon-cutlery"></i></div>
                                 </div>
+
                             </div>
                             <div>
-                                <button id="btnSalvaDadosRec" type="submit" class="btn btn-warning btn blockCenter">Salvar</button>
-                                <button id="btnSalvaRec" type="button" class="btn btn-warning btn blockCenter" style="display:none;">Salvar</button>
+                                <h4 style="border-left:5px solid orange"></h4>
                             </div>
-                            }
+                        </div>
+                        <div id="ingModPrep" class="col-md-12" style="padding:20px 0; border-top: 1px solid rgba(16, 15, 15, 0.2); display:none;">
+                            <div class="col-md-6">
+                                <div>
+                                    <h4 style="border-left:5px solid orange">Ingredientes</h4>
+                                </div>
+                                <div>
+                                    <p>Não use caracter especiais ou numeração</p>
+                                </div>
+                                <div class="input-group mtop" style="width:100%;">
+                                    <input id="txtIngrediente" class="form-control " type="text" placeholder="Adicione Ingrediente" maxlength="50">
+                                    <span class="input-group-btn"><button id="btnAddIngrediente" style="outline:none;" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" style="color:white;"></i></button></span>
+                                </div>
+                                <div class="msgcadrec">
+                                    <ul id="ltIngredientes" style=" overflow: auto;">
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <h4 style="border-left:5px solid orange">Modo de preparo</h4>
+                                </div>
+                                <div>
+                                    <p>Escreva um modo por vez, pois sera listado em ordem numerica</p>
+                                </div>
+                                <div class="input-group mtop" style="width:100%;">
+                                    <input id="txtModPreparo" class="form-control " type="text" placeholder="Adicionar modo de preparo" maxlength="100">
+                                    <span class="input-group-btn"><button id="btnModoPreparo" style="outline:none;" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" style="color:white;"></i></button></span>
+                                </div>
+                                <div class="msgcadrec">
+                                    <ul id="ltModoPreparo" style=" overflow: auto;">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="btnSalvaDadosRec" type="button" class="btn btn-warning btn blockCenter">Salvar</button>
+                            <button id="btnSalvaRec" type="button" class="btn btn-warning btn blockCenter" style="display:none;">Salvar</button>
+                        </div>
+                    </form>
                     </div>
             </div>
         </div>
     </div>
 
 <script>
+
+    var ingredientes = "";
+    var modoPreparo = "";
+
     $('#btnSalvaDadosRec').click(function () {
-        $('#ingModPrep').slideDown();
-        $('#btnSalvaDadosRec').css("display", "none");
-        $('#btnSalvaRec').css("display", "block");
+        $.post("@Url.Action("CadReceitas", "Home")",{
+            Nom_Receita: $("#txtNomeReceita").val(),
+            Ind_LibComp: $('input:radio[name=optradio]:checked').val(),
+            Temp_Prep: $("#txtTempoPreparo").val(),
+            Rend_Porc: $("#txtRendPorc").val()
+        }).success(function () {
+            $('#ingModPrep').slideDown();
+            $('#btnSalvaDadosRec').css("display", "none");
+            $('#btnSalvaRec').css("display", "block");
+        }).error(function () {
+            $('#txtMsgWarningAlt').text("ERRO AO CADASTRAR RECEITA").slideDown();
+        });
     });
 
+    $('#btnAddIngrediente').click(function () {
+        if (!$('#txtIngrediente').val())
+        {
+            $('#txtIngrediente').addClass("erro");
+            return false;
+        }
+
+        ingredientes += $('#txtIngrediente').val() + "/";
+        $('#ltIngredientes').append('<li>' + $('#txtIngrediente').val() + '</li>');
+        $('#txtIngrediente').val("");
+    });
+
+    $('#btnModoPreparo').click(function () {
+        if (!$('#txtModPreparo').val()) {
+            $('#txtModPreparo').addClass("erro");
+            return false;
+        }
+
+        modoPreparo += $('#txtModPreparo').val() + "/";
+        $('#ltModoPreparo').append('<li>' + $('#txtModPreparo').val() + '</li>');
+        $('#txtModPreparo').val("");
+    });
+
+    $('#btnSalvaRec').click(function () {
+        $.post("@Url.Action("PostIngredientes", "Home")",{
+            nomIngrediente: ingredientes,
+        }).error(function () {
+            $('#txtMsgWarningAlt').text("ERRO AO CADASTRAR INGREDIENTES").slideDown();
+        });
+
+        $.post("@Url.Action("PostModoPreparo", "Home")",{
+            nomModoPreparo: modoPreparo,
+        }).error(function () {
+            $('#txtMsgWarningAlt').text("ERRO AO CADASTRAR MODO DE PREPARO").slideDown();
+        });
+
+        $('#UploadImagem').modal('show');
+    })
 </script>
 
