@@ -1,80 +1,71 @@
-﻿@{
+﻿@model IEnumerable<BuscouAchou.Domain.DataModels.ReceitasBuscadasDataModel>
+@{
     Layout = null;
 }
 <div class="container">
     <div id="formrec" class="col-md-12" style="background-color:white; padding:0 200px 0 200px;">
-        <ul style="padding:0">
-            <li class="lisrec mbottom">
-                <div class="container-fluid" style="padding: 5px 0">
-                    <div class="col-md-4">
-                        <img src="~/Content/ImagemReceitas/@ViewBag.filename" style="width:100%">
-                    </div>
-                    <div class="col-md-5" style=" margin-top: 10px;padding:0;">
-                        <p style=" font-size:25px; text-decoration: none; color:black;">Bolo de Chocolate</p>
-                        <p>Enviado Por Luan Felipe</p>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="col-md-12" style="margin-top:10px; padding:0;">
-                            <i style="font-size: 20px; color:rgba(255, 152, 0, 0.55)" class="glyphicon glyphicon-hourglass"></i>
-                            <label style="color:rgba(255, 152, 0, 0.55); font-size:13px;">10 Min</label>
+        @if (Model.Any() || Model != null)
+        { 
+            foreach (var item in Model)
+            {
+                <ul style="padding:0">
+                    <li class="lisrec mbottom">
+                        <div class="container-fluid" style="padding: 5px 0">
+                            <div class="col-md-4">
+                                <img src="~/Content/ImagemReceitas/@item.NomeImagem" style="width:100%">
+                            </div>
+                            <div class="col-md-5" style=" margin-top: 10px;padding:0;">
+                                <p style=" font-size:20px; text-decoration: none; color:black;">@item.Nom_Receita</p>
+                                <p>Enviado Por @item.Nom_Usua</p>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="col-md-12" style="margin-top:10px; padding:0;">
+                                    <i style="font-size: 20px; color:rgba(255, 152, 0, 0.55)" class="glyphicon glyphicon-hourglass"></i>
+                                    <label style="color:rgba(255, 152, 0, 0.55); font-size:13px;">@item.Temp_Prep Min</label>
+                                </div>
+                                <div class="col-md-12" style="margin-top:10px; padding:0;">
+                                    <i style="font-size: 20px; color:rgba(255, 152, 0, 0.55)" class="glyphicon glyphicon-cutlery"></i>
+                                    <label style="color:rgba(255, 152, 0, 0.55);font-size:13px;">@item.Rend_Porc Porção</label>
+                                </div>
+                            </div>
+                            <div class="col-md-1" style="padding: 0;">
+                                <button class="iconresc" onclick="getIngrModPrep(@item.Num_SeqlReceitas)">
+                                    <i class="glyphicon glyphicon-plus" style="color:white;"></i>
+                                </button>
+                            </div>
+                            <div id="modalIngredientesModPrep" class="col-md-12 mod" style="display:none; margin-top:20px; padding-bottom:15px;"></div>
                         </div>
-                        <div class="col-md-12" style="margin-top:10px; padding:0;">
-                            <i style="font-size: 20px; color:rgba(255, 152, 0, 0.55)" class="glyphicon glyphicon-cutlery"></i>
-                            <label style="color:rgba(255, 152, 0, 0.55);font-size:13px;">3 Porção</label>
-                        </div>
-                        </div>
-                    <div class="col-md-1" style="padding: 0;">
-                        <button class="iconresc">
-                            <i class="glyphicon glyphicon-plus" style="color:white;"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-12 mod" style="display:none; margin-top:20px; padding-bottom:15px;">
-                        <div class="ing">
-                            <p style="background-color: rgba(255, 152, 0, 0.55); color:white; text-align:center;">INGREDIENTES</p>
-                            <ul>
-                                <li><input type="checkbox" /> Ingredientes</li>
-                                <li><input type="checkbox" /> Ingredientes</li>
-                                <li><input type="checkbox" /> Ingredientes</li>
-                                <li><input type="checkbox" /> Ingredientes</li>
-                                <li><input type="checkbox" /> Ingredientes</li>
-                                <li><input type="checkbox" /> Ingredientes</li>
-                            </ul>
-                        </div>
-                        <div style="margin:10px 0">
-                            <p style="background-color: rgba(255, 152, 0, 0.55); color:white; text-align:center;">MODO DE PREPARO</p>
-                               <ul class="modprep">
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                                <li>IngredientesIngredientesIngredientesIngredientesIngredientes</li>
-                            </ul>
-                        </div>
-                        <button type="button" class="btn btn-warning ">Imprimir Receita</button>
-                        <button type="button" class="btn btn-warning ">Lista de Compra</button>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                    </li>
+                </ul>
+            }
+        }
     </div>
 </div>
 <script>
-    $('.iconresc').click(function (){
-        if ($(this).hasClass('ativo')){
-           $('.iconresc i').removeClass('glyphicon glyphicon-minus')
-            $(this).removeClass('ativo')
+    function getIngrModPrep(numRec) {
+        if (!$('.iconresc').hasClass('populado')) {
+            $.get("@Url.Action("GetIngredientesModoPreparo", "Home")",{
+                numReceita: numRec
+            }).success(function (data) {
+                $('#modalIngredientesModPrep').html(data);
+            }).error(function () {
+                console.log("ERRO");
+            });
+        }
+
+        if ($('.iconresc').hasClass('ativo')) {
+            $('.iconresc i').removeClass('glyphicon glyphicon-minus')
+            $('.iconresc').removeClass('ativo')
             $('.iconresc i').addClass('glyphicon glyphicon-plus')
             $('.mod').hide();
-        }else{
+        } else {
             $('.iconresc i').removeClass('glyphicon glyphicon-plus')
             $('.iconresc i').addClass('glyphicon glyphicon-minus')
-            $(this).addClass('ativo')
+            $('.iconresc').addClass('ativo')
+            $('.iconresc').addClass('populado')
             $('.mod').show();
         }
-    });
+
+
+    };
 </script>

@@ -108,10 +108,16 @@ namespace BuscouAchou.Controllers
 
         }
 
-        public ActionResult Receitas()
+        public ActionResult Receitas(string nomePesquisado)
         {
-            ViewBag.filename = "teste2.jpg";
-            return View("_Receitas");
+           var model = repository.GetReceitasBuscadas(nomePesquisado);
+            return View("_Receitas",model);
+        }
+
+        public ActionResult GetIngredientesModoPreparo(int numReceita) 
+        {
+            var model = repository.GetIngredientesModoPreparo(numReceita);
+            return View("_IngredientesModoPreparo", model);
         }
 
         public ActionResult DadosUsua()
@@ -170,7 +176,9 @@ namespace BuscouAchou.Controllers
 
         public ActionResult MinhasReceitas() 
         {
-            return View("_MinhasReceitas");        
+            var codUsua = Convert.ToInt32(Session["codUsua"]);
+            var model = repository.GetReceitasCadastradas(codUsua);
+            return View("_MinhasReceitas", model);        
         }
 
         public ActionResult AlterarReceita()

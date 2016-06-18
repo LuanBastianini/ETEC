@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<BuscouAchou.Domain.DataModels.ReceitasCadastradasDataModel>
+@{
     Layout = null;
 }
 
@@ -9,35 +10,27 @@
             <h3 style="border-left:5px solid orange">Minhas Receitas</h3>
         </div>
         <div class="row">
-            <div class="col-md-12" style="margin:20px 0;">
+            <div class="col-md-12" style="margin:0 0 20px 0;">
                 <div class="modal-body">
                     <div>
                         <table class="table table-hover">
-                            <tr>
-                                <td>Bolo de Chocolate</td>
-                                <td><i title="Alterar" id="altReceita" style="cursor:pointer; color:blue;" class="glyphicon glyphicon-edit"></i></td>
-                                <td><i title="Remover" style="cursor:pointer; color:red;" class="glyphicon glyphicon-remove"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Bolo de Chocolate</td>
-                                <td><i title="Alterar" id="altReceita" style="cursor:pointer; color:blue;" class="glyphicon glyphicon-edit"></i></td>
-                                <td><i title="Remover" style="cursor:pointer; color:red;" class="glyphicon glyphicon-remove"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Bolo de Chocolate</td>
-                                <td><i title="Alterar" id="altReceita" style="cursor:pointer; color:blue;" class="glyphicon glyphicon-edit"></i></td>
-                                <td><i title="Remover" style="cursor:pointer; color:red;" class="glyphicon glyphicon-remove"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Bolo de Chocolate</td>
-                                <td><i title="Alterar" id="altReceita" style="cursor:pointer; color:blue;" class="glyphicon glyphicon-edit"></i></td>
-                                <td><i title="Remover" style="cursor:pointer; color:red;" class="glyphicon glyphicon-remove"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Bolo de Chocolate</td>
-                                <td><i title="Alterar" id="altReceita" style="cursor:pointer; color:blue;" class="glyphicon glyphicon-edit"></i></td>
-                                <td><i title="Remover" style="cursor:pointer; color:red;" class="glyphicon glyphicon-remove"></i></td>
-                            </tr>
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td data-numrec="@item.Num_SeqlReceitas">@item.Nom_Receita</td>
+                                        <td onclick="alteraRec()"><i title="Alterar" style="cursor:pointer; color:blue;" class="glyphicon glyphicon-edit "></i></td>
+                                        <td><i title="Remover" style="cursor:pointer; color:red;" class="glyphicon glyphicon-remove "></i></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>Nenhuma Receita Encontrada</td>
+                                </tr>
+                            }
                         </table>
                     </div>
                 </div>

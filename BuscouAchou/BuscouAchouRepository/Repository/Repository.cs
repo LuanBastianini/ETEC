@@ -1,4 +1,5 @@
 ﻿using BuscouAchou.Domain;
+using BuscouAchou.Domain.DataModels;
 using BuscouAchou.Domain.Entities;
 using BuscouAchou.Infra.Data;
 using BuscouAchouBaseRepository.Infra;
@@ -44,7 +45,10 @@ namespace BuscouAchouRepository
             BARSP_UpdDadosUsuario,
             BARSP_InsReceitas,
             BARSP_InsIngrediente,
-            BARSP_InsModoPreparo
+            BARSP_InsModoPreparo,
+            BARSP_SelReceitas,
+            BARSP_SelReceitasCadastradas,
+            BARSP_SelIngredientesModoPreparo
         }
 
         public void Post(BAR_Usuario entitie) 
@@ -131,6 +135,91 @@ namespace BuscouAchouRepository
             AddParameter("@Num_SeqlReceitas", numReceita);
             AddParameter("@Modo_Preparo", nomModoPreparo);
             ExecuteNonQuery();
+        }
+
+        public IEnumerable<ReceitasBuscadasDataModel> GetReceitasBuscadas(string nomePesquisado)
+        {
+            ExecuteProcedure(procidures.BARSP_SelReceitas);
+
+            AddParameter("@Nom_Pesquisado", nomePesquisado);
+
+            var lista = new List<ReceitasBuscadasDataModel>();
+
+            using (var r = ExecuteReader())
+            {
+                while (r.Read())
+                {
+                    lista.Add(new ReceitasBuscadasDataModel
+                    {
+                        Num_SeqlReceitas = r.ReadAttr<int>("Num_SeqlReceitas"),
+                        Nom_Receita = r.ReadAttr<string>("Nom_Receita"),
+                        Temp_Prep = r.ReadAttr<short>("Temp_Prep"),
+                        Rend_Porc = r.ReadAttr<short>("Rend_Porc"),
+                        Nom_Usua = r.ReadAttr<string>("Nom_Usua"),
+                    });
+                }
+            }
+
+            return lista;
+        }
+
+        public ReceitasBuscadasDataModel GetIngredientesModoPreparo(int numReceita) 
+        {
+            ExecuteProcedure(procidures.BARSP_SelIngredientesModoPreparo);
+
+            AddParameter("@Num_SeqlReceitas", numReceita);
+
+            var lista = new ReceitasBuscadasDataModel();
+
+            using (var r = ExecuteReader()) 
+            {
+                while (r.Read()) 
+                {
+                    var ingredientes = new IngredientesDataModel
+                    {
+                        Num_SeqlIngrediente = r.ReadAttr<int>("Num_SeqlIngrediente"),
+                        Nom_Ingrediente = r.ReadAttr<string>("Nom_Ingrediente")
+                    };
+
+                    lista.Ingredientes.Add(ingredientes);
+                }
+
+                if(r.NextResult())
+                    while (r.Read())
+                    {
+                        var modopreparo = new ModoPreparoDataModel
+                        {
+                            Num_SeqlModPreparo = r.ReadAttr<int>("Num_SeqlModPreparo"),
+                            Modo_Preparo = r.ReadAttr<string>("Modo_Preparo")
+                            
+                        };
+
+                        lista.ModoPreparo.Add(modopreparo);
+                    }
+            }
+            return lista;
+        }
+
+        public List<ReceitasCadastradasDataModel> GetReceitasCadastradas(int codUsua) 
+        {
+            ExecuteProcedure(procidures.BARSP_SelReceitasCadastradas);
+
+            AddParameter("@Num_SeqlUsuario", codUsua);
+
+            var lista = new List<ReceitasCadastradasDataModel>();
+
+            using (var r = ExecuteReader()) 
+            {
+                while (r.Read()) 
+                {
+                    lista.Add(new ReceitasCadastradasDataModel
+                    {
+                        Num_SeqlReceitas = r.ReadAttr<int>("Num_SeqlReceitas"),
+                        Nom_Receita = r.ReadAttr<string>("Nom_Receita")
+                    });
+                }
+            }
+            return lista;
         }
     }
 }

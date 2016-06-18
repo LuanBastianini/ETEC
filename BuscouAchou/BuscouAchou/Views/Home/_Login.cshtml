@@ -77,31 +77,21 @@
                 $('#emailLog').removeClass("erro");
                 $('#emailLog').addClass("ok");
                 $('#txtMsgWarning').slideUp();
+                $('#btnlogin').prop("disabled", false);
             } else {
                 $('#emailLog').removeClass("ok");
                 $('#emailLog').addClass("erro");
                 $('#txtMsgWarning').text("EMAIL INVALIDO").slideDown();
             }
         });
-
-        habilitaBtnLogin()
-    });
-
-    $('#numSenhaLog').blur(function () {
-        if (!$("#numSenhaLog").val()) {
-            $('#numSenhaLog').removeClass("ok");
-            $('#numSenhaLog').addClass("erro");
-            $('#btnlogin').prop("disabled", true);
-            return false;
-        } else {
-            $('#numSenhaLog').removeClass("erro");
-            $('#numSenhaLog').addClass("ok");
-        }
-
-        habilitaBtnLogin()
     });
 
     $('#btnlogin').click(function () {
+        if (!$("#numSenhaLog").val()) {
+            $('#txtMsgWarning').text("E-MAIL OU SENHA INCORRETA.").slideDown();
+            return false;
+        }
+
         $.post("@Url.Action("UsuarioLogado", "Home")",{
             Email: $("#emailLog").val(),
             senha: $("#numSenhaLog").val()
@@ -115,9 +105,4 @@
             $('#txtMsgWarning').text("E-MAIL OU SENHA INCORRETA.").slideDown();
         });
     });
-
-    function habilitaBtnLogin() {
-        if ($('#emailLog').hasClass('ok') && $('#numSenhaLog').hasClass('ok'))
-            $('#btnlogin').prop("disabled", false);
-    }
 </script>

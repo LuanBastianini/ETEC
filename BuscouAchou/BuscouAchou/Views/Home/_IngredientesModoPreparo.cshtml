@@ -1,0 +1,31 @@
+﻿@model BuscouAchou.Domain.DataModels.ReceitasBuscadasDataModel
+@{
+    Layout = null;
+}
+
+<div class="ing">
+    <p style="background-color: rgba(255, 152, 0, 0.55); color:white; text-align:center;">INGREDIENTES</p>
+    <ul style=" overflow: auto;">
+        @if (Model.Ingredientes.Any() || Model.Ingredientes != null)
+        {
+            foreach (var item in Model.Ingredientes)
+            {
+                <li><input type="checkbox" /> @item.Nom_Ingrediente</li>
+            }
+        }
+    </ul>
+</div>
+<div style="margin:10px 0">
+    <p style="background-color: rgba(255, 152, 0, 0.55); color:white; text-align:center;">MODO DE PREPARO</p>
+    <ul class="modprep" style=" overflow: auto;">
+        @if (Model.ModoPreparo.Any() || Model.ModoPreparo != null)
+        {
+            foreach (var item in Model.ModoPreparo)
+            {
+                <li> @item.Modo_Preparo</li>
+            }
+        }
+    </ul>
+</div>
+<button type="button" class="btn btn-warning ">Imprimir Receita</button>
+<button type="button" class="btn btn-warning ">Lista de Compra</button>

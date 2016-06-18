@@ -111,17 +111,24 @@
         });
     });
 
-    $(Document).on('click', '#altReceita', function () {
+    function alteraRec() {
         $.get("@Url.Action("AlterarReceita", "Home")").success(function (data) {
             $('#modalAltRec').html(data);
             $('#modalAltRec').modal('show');
         }).error(function () {
             console.log("ERRO");
         });
-    });
+    }
 
     $('#buscaReceitas').click(function () {
-        $.get("@Url.Action("Receitas", "Home")").success(function (data) {
+        if (!$('#inpbusc').val())
+        {
+            return false;
+        }
+
+        $.get("@Url.Action("Receitas", "Home")", {
+            nomePesquisado: $('#inpbusc').val()
+        }).success(function (data) {
             $('#imglogo').css("width", "25%");
             $('#inputbusca').addClass('centerinput').focus();
             $('#contlogo').css("padding", "0");

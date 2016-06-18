@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModels\IngredientesDataModel.cs" />
+    <Compile Include="DataModels\ModoPreparoDataModel.cs" />
+    <Compile Include="DataModels\ReceitasBuscadasDataModel.cs" />
+    <Compile Include="DataModels\ReceitasCadastradasDataModel.cs" />
     <Compile Include="Entities\BAR_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataModels\ReceitaDataModel.cs" />
